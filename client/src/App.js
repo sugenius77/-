@@ -1,32 +1,30 @@
-import React, {useState, useEffect} from 'react'
-
+import { Route, Switch } from 'react-router-dom';
+import './App.css';
+import Header from './components/Header/Header';
+import DetailRecommend from './components/Pages/RealTime/DetailRecomend';
+import RealTime from './components/Pages/RealTime/RealTime';
 function App() {
-  // json 데이터를 주고 받는 기본적인 형태
-  // 나중에는 GET, POST 형태를 설계 해야 할 필요성 존재.
-  const [data, setData] = useState( [{}] )
-
-  useEffect(() => {
-    fetch("/test").then(
-      res => res.json()
-    ).then(
-      data => {
-        setData(data)
-        console.log(data)
-      }
-    )
-  }, [])
-  return (
-    <div>
-      {(typeof data.members === 'undefined') ?  (
-          <p>Loading...</p>
-      ): (
-        data.members.map((member, i) => (
-          <p key={i}>{member}</p>
-        ))
-      )}
-      
-    </div>
-  )
+    return (
+        <div className="App">
+            <Header></Header>
+            <div className="container">
+                <Switch>
+                    <Route exact path="/realtime">
+                        <RealTime />
+                    </Route>
+                    <Route path="/realtime/:id">
+                        <DetailRecommend />
+                    </Route>
+                    <Route path="/random">랜덤 추천</Route>
+                    <Route path="/worldcup">음식 월드컵</Route>
+                    <Route path="/developer">개발자 소개</Route>
+                    <Route exact path="/">
+                        홈
+                    </Route>
+                </Switch>
+            </div>
+        </div>
+    );
 }
 
-export default App
+export default App;
