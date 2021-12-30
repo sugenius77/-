@@ -14,6 +14,7 @@ class rabbitMenu(db.Model):
     menu_name = db.Column(db.String(20), nullable=False)
     image_url = db.Column(db.String(255), nullable=False)
     toggle_rating = db.Column(db.Integer, nullable=True)
+    world_rating = db.Column(db.Integer, nullable=True)
     world_ranking = db.Column(db.Integer, nullable=True)
     kinds_id =db.Column(db.Integer, db.ForeignKey('rabbitKinds.id'), nullable=False)
     
