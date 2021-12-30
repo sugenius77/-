@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { HeaderContext } from './Header';
-import MenuToggle from './MenuToggle';
+import logo from './images/logo_48.png';
+import MenuButton from './MenuButton';
 
 const Div = styled.div`
     padding: 8px 12px;
@@ -13,17 +13,13 @@ const Div = styled.div`
     }
 `;
 
-const MainLogo = () => {
+const MainLogo = ({ innerWidth, onClick }) => {
     return (
-        <HeaderContext.Consumer>
-            {({ innerWidth }) => (
-                <Div>
-                    <img src={`${process.env.PUBLIC_URL}/header/logo_48.png`} alt="logo" />
-                    <strong>구구절절</strong>
-                    {innerWidth <= 1040 && <MenuToggle />}
-                </Div>
-            )}
-        </HeaderContext.Consumer>
+        <Div>
+            <img src={logo} alt="logo" />
+            <strong>구구절절</strong>
+            {innerWidth < 980 && <MenuButton onClick={onClick} />}
+        </Div>
     );
 };
 
