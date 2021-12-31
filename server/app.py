@@ -2,7 +2,7 @@ from flask import Flask
 from models.db_connect import db
 from flask_migrate import Migrate
 from config import config
-from views import main_view
+from controller import worldcup
 
 def create_app():
 
@@ -13,8 +13,7 @@ def create_app():
     migrate = Migrate()
     migrate.init_app(app, db)
     
-    app.register_blueprint(main_view.bp)
-    
+    app.register_blueprint(worldcup.worldcup)
 
     return app
 if __name__ == '__main__':
