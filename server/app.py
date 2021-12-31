@@ -34,6 +34,8 @@ def create_app():
     migrate.init_app(app, db)
     
     app.register_blueprint(food_recommend.food)
+    app.register_blueprint(main_view.bp)
+    app.register_blueprint(worldcup.worldcup)
 
     app.register_blueprint(worldcup.worldcup)
 
