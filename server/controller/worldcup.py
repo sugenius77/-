@@ -19,7 +19,6 @@ def rank():
 
     if request.method == 'GET':
         ranking_list = rabbitMenu.query\
-            .order_by(rabbitMenu.world_ranking.asc())\
             .with_entities(
                 rabbitMenu.menu_name,
                 rabbitMenu.world_ranking,
