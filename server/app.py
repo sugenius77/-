@@ -5,6 +5,7 @@ from config import config
 from controller import food_recommend
 from server.controller import food_recommend
 from flask_cors import CORS
+from controller import worldcup
 
 def create_app():
     
@@ -32,8 +33,9 @@ def create_app():
     migrate = Migrate()
     migrate.init_app(app, db)
     
-    app.register_blueprint(main_view.bp)
     app.register_blueprint(food_recommend.food)
+    app.register_blueprint(main_view.bp)
+    app.register_blueprint(worldcup.worldcup)
 
     return app
 if __name__ == '__main__':
