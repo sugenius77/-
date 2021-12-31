@@ -7,7 +7,7 @@ class RealTime {
                 ny: ny,
             },
         });
-        return res;
+        return res ? res : 'error';
     }
 }
 

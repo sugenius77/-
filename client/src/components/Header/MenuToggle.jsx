@@ -2,6 +2,7 @@ import styled from 'styled-components';
 const Div = styled.div`
     position: absolute;
     display: none;
+
     right: 1em;
     font-size: 24px;
     font-size: 32px;
