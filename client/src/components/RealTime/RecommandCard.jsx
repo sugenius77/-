@@ -22,7 +22,7 @@ const RecommendCard = ({ title, path, food, onClick }) => {
     };
 
     return (
-        <Div onClick={clickHandler}>
+        <Div onMouseUp={clickHandler}>
             <TitleDiv>{title}</TitleDiv>
             <div style={{ height: '512px', backgroundColor: 'gray' }}>{path}</div>
             <FoodDiv>{food}</FoodDiv>
