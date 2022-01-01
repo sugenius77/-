@@ -4,11 +4,18 @@ import styled from 'styled-components';
 import { HeaderContext } from './Header';
 
 const Div = styled.div`
+<<<<<<< sprint
     position: ${(props) => (props.toggle ? 'absolute' : 'static')};
     top: 0;
     left: 0;
     right: 0;
     z-index: 1;
+=======
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+>>>>>>> feat:스크롤 이벤트로 투명도 조절하기
     display: flex;
     justify-content: space-between;
     align-items: center;
