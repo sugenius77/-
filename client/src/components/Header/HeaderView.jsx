@@ -1,36 +1,39 @@
 import MainLogo from './MainLogo';
-import MenuLink from './MenuLink';
+import Menu from './Menu';
 import styled from 'styled-components';
+import { HeaderContext } from './Header';
 
 const Div = styled.div`
-    z-index: 1;
-    min-height: 10vh;
-    position: fixed;
-    margin-top: -1px;
-    padding-top: 1px;
+    position: absolute;
     top: 0;
-    width: 100%;
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: #81c8ee;
-
+    padding: 8px 12px;
+    border-bottom: 2px solid black;
     font-size: 24px;
     background-color: white;
+
     @media screen and (max-width: 1040px) {
         flex-direction: column;
         align-items: flex-start;
-        background-color: white;
     }
 `;
 
-const HeaderView = ({ toggle, innerWidth, toggleHandler, logoName }) => {
+const HeaderView = () => {
     return (
-        <Div innerWidth={toggle}>
-            <MainLogo innerWidth={innerWidth} toggleHandler={toggleHandler} logoName={logoName} />
-            {innerWidth > 1040 && <MenuLink />}
-            {innerWidth <= 1040 && toggle && <MenuLink />}
-        </Div>
+        <HeaderContext.Consumer>
+            {({ toggle, innerWidth }) => (
+                <Div>
+                    <MainLogo />
+                    {innerWidth >= 1040 && <Menu />}
+                    {innerWidth < 1040 && toggle && <Menu />}
+                </Div>
+            )}
+        </HeaderContext.Consumer>
     );
 };
 

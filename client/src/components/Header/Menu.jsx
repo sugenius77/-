@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import GitLink from './GitLink';
+import { HeaderContext } from './Header';
 
 const Div = styled.div`
     display: flex;
@@ -18,7 +19,7 @@ const Div = styled.div`
         color: #fec478;
     }
 
-    @media screen and (max-width: 980px) {
+    @media screen and (max-width: 1040px) {
         flex-direction: column;
         align-items: center;
         text-align: center;
@@ -33,16 +34,30 @@ const Div = styled.div`
 
 const Menu = () => {
     return (
-        <>
-            <Div>
-                <Link to="/">소개</Link>
-                <Link to="/realtime">실시간 추천</Link>
-                <Link to="/random">랜덤 추천</Link>
-                <Link to="/worldcup">음식 월드컵</Link>
-                <Link to="/developer">개발자 소개</Link>
-            </Div>
-            <GitLink />
-        </>
+        <HeaderContext.Consumer>
+            {({ toggleHandler }) => (
+                <>
+                    <Div>
+                        <Link to="/" onClick={toggleHandler}>
+                            소개
+                        </Link>
+                        <Link to="/realtime" onClick={toggleHandler}>
+                            실시간 추천
+                        </Link>
+                        <Link to="/random" onClick={toggleHandler}>
+                            랜덤 추천
+                        </Link>
+                        <Link to="/worldcup" onClick={toggleHandler}>
+                            음식 월드컵
+                        </Link>
+                        <Link to="/developer" onClick={toggleHandler}>
+                            개발자 소개
+                        </Link>
+                    </Div>
+                    <GitLink />
+                </>
+            )}
+        </HeaderContext.Consumer>
     );
 };
 

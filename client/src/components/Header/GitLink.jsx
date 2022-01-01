@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import github from './images/github_32.png';
-import gitlab from './images/gitlab_32.png';
 
 const Div = styled.div`
     list-style: none;
@@ -11,7 +9,7 @@ const Div = styled.div`
         margin-left: 12px;
     }
 
-    @media screen and (max-width: 980px) {
+    @media screen and (max-width: 1040px) {
         padding-left: 0px;
         justify-content: center;
         width: 100%;
@@ -26,10 +24,10 @@ const GitLink = () => {
     return (
         <Div>
             <a href="https://github.com/">
-                <img src={github} alt="github" />
+                <img src={`${process.env.PUBLIC_URL}/header/github_32.png`} alt="github" />
             </a>
             <a href="https://gitlab.com/">
-                <img src={gitlab} alt="gitlab" />
+                <img src={`${process.env.PUBLIC_URL}/header/gitlab_32.png`} alt="gitlab" />
             </a>
         </Div>
     );
