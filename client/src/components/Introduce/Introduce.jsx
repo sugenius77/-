@@ -21,8 +21,11 @@ const Scene = styled.div`
     }
 `;
 
-const MainMessage = styled.div`
-    opacity: ${({ messageOpacity }) => messageOpacity};
+const MainMessage = styled.div.attrs((props) => ({
+    style: {
+        opacity: props.opacity,
+    },
+}))`
     position: fixed;
     top: 35vh;
     width: 100%;
@@ -31,20 +34,6 @@ const MainMessage = styled.div`
     line-height: 1.2;
 `;
 
-const End = styled.div`
-    display: flex;
-    height: ${({ scrollHeight }) => scrollHeight}px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 1rem;
-    background-color: white;
-    font-weight: bold;
-
-    strong {
-        font-size: 3rem;
-    }
-`;
 const Canvas = styled.canvas``;
 const Introduce = () => {
     const heightNum = 5; // 브라우저의 높이의 5배로 scrollHeight 세팅
@@ -284,7 +273,6 @@ const Introduce = () => {
                 const fadeInScrollEnd = values[2].end * scrollHeight;
                 const fadeInScrollHeight = fadeInScrollEnd - fadeInScrollStart;
 
-                const fadeOutScrollStart = values[3].start * scrollHeight;
                 const fadeOutScrollEnd = values[3].end * scrollHeight;
                 const fadeOutScrollHeight = fadeInScrollEnd - fadeInScrollStart;
 
@@ -309,15 +297,13 @@ const Introduce = () => {
 
     const messageOpacity = useMemo(() => {
         const message = [];
-
-        const currentRatio = currentYoffset - prevScrollHeight;
         let values = sceneInfo[currentScene].values.opacity;
 
         for (let i = 0; i < values.length; i++) {
             message.push(fadeIn(values[i]));
         }
         return message;
-    }, [currentYoffset, sceneInfo, fadeIn]);
+    }, [currentYoffset, fadeIn]);
 
     return (
         <>
@@ -328,25 +314,25 @@ const Introduce = () => {
                         <div>
                             <Canvas />
                         </div>
-                        <MainMessage messageOpacity={messageOpacity[0]}>
+                        <MainMessage opacity={messageOpacity[0]}>
                             <p>
                                 코로나로 인해 늘어난
                                 <br /> 배달 주문
                             </p>
                         </MainMessage>
-                        <MainMessage messageOpacity={messageOpacity[1]}>
+                        <MainMessage opacity={messageOpacity[1]}>
                             <p>
                                 치킨은 점심 때 먹었는데...
                                 <br /> 그럼 저녁엔 뭘 먹지?
                             </p>
                         </MainMessage>
-                        <MainMessage messageOpacity={messageOpacity[2]}>
+                        <MainMessage opacity={messageOpacity[2]}>
                             <p>
                                 오늘 비가 온다는데
                                 <br /> 파전이나 먹을까?
                             </p>
                         </MainMessage>
-                        <MainMessage messageOpacity={messageOpacity[3]}>
+                        <MainMessage opacity={messageOpacity[3]}>
                             <p>
                                 이젠 메뉴 고르는 것도
                                 <br /> 일인 지금!
