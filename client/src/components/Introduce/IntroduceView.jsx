@@ -41,7 +41,7 @@ const MainMessage = styled.div.attrs((props) => ({
 const IntroduceView = () => {
     return (
         <ScrollContext.Consumer>
-            {({ sceneInfo, currentScene, messageOpacity, messageTranslateY }) => (
+            {({ sceneInfo, currentScene, messageOpacity, messageTranslateY, canvasRef }) => (
                 <>
                     <Scene scrollHeight={sceneInfo[0].scrollHeight}>
                         {currentScene === 0 && (
@@ -136,7 +136,7 @@ const IntroduceView = () => {
                             검색하여 추천해드립니다!
                         </p>
 
-                        <img src={`${process.env.PUBLIC_URL}/loading/logo_512.png`} style={{ transform: 'scale(0.5)' }} alt="로고이미지" />
+                        <img src={`${process.env.PUBLIC_URL}/loading/logo_512.png`} alt="로고이미지" />
 
                         <button>추천 받으러 가기</button>
                     </Scene>
