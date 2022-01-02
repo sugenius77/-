@@ -4,14 +4,7 @@ import styled from 'styled-components';
 import { HeaderContext } from './Header';
 
 const Div = styled.div`
-<<<<<<< sprint
     position: ${(props) => (props.toggle ? 'absolute' : 'static')};
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-=======
-    position: absolute;
     top: 0;
     left: 0;
     right: 0;
