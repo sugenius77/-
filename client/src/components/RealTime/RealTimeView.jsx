@@ -5,6 +5,7 @@ import Loading from '../Loading';
 
 const Div = styled.div`
     display: flex;
+    top: 35vh;
     flex-direction: column;
     justify-content: center;
 `;
