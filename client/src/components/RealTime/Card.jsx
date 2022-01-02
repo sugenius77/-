@@ -5,6 +5,7 @@ import { RealTimeContext } from './RealTime';
 const Div = styled.div`
     width: 100%;
     height: 100%;
+    top: 50vh;
     display: flex;
     direction: row;
     justify-content: space-between;
