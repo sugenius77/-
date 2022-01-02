@@ -1,3 +1,5 @@
+const apisUrl = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst';
+const serviceKey = 'y0g%2Fa5rg15oSMXYYVZyErtu%2BUVmJSyn4JXkrl8FM6VKKxwCfvIjopgp1KQMhGJyt7EHFQ6OZv99R%2ByxDNht15Q%3D%3D';
 class Weather {
     constructor(url, serviceKey) {
         this.url = url;
@@ -18,8 +20,7 @@ class Weather {
                 nx: '55',
                 ny: '127',
             },
-        }).then((res) => console.log(res));
-        console.log(JSON.stringify(res));
+        }).then((res) => console.log(JSON.stringify(res)));
     }
 }
-export default Weather;
+export const weather = new Weather(apisUrl, serviceKey);
