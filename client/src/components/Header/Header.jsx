@@ -4,7 +4,7 @@ import React from 'react';
 
 export const HeaderContext = createContext();
 const Header = () => {
-    const [toggle, setToggle] = useState(true);
+    const [toggle, setToggle] = useState(false);
     const [innerWidth, setInnerWidth] = useState(0);
     const toggleHandler = () => {
         setToggle((cur) => !cur);
