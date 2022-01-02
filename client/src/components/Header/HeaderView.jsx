@@ -15,7 +15,7 @@ const Div = styled.div`
     top: 0;
     left: 0;
     right: 0;
->>>>>>> feat:스크롤 이벤트로 투명도 조절하기
+    z-index: 1;
     display: flex;
     justify-content: space-between;
     align-items: center;

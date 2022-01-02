@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, createContext } from 'react';
 import HeaderView from './HeaderView';
 import React from 'react';
 
-export const HeaderContext = React.createContext();
-
+export const HeaderContext = createContext();
 const Header = () => {
     const [toggle, setToggle] = useState(true);
     const [innerWidth, setInnerWidth] = useState(0);
