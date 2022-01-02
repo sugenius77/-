@@ -5,10 +5,12 @@ import { RealTimeContext } from './RealTime';
 const Div = styled.div`
     width: 100%;
     height: 100%;
-    top: 50vh;
+    margin-top: 20vh;
     display: flex;
+    bottom: 0;
     direction: row;
     justify-content: space-between;
+    align-items: center;
 `;
 
 const Card = () => {
