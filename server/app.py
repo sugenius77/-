@@ -3,6 +3,7 @@ from models.db_connect import db
 from flask_migrate import Migrate
 from config import config
 from controller import food_recommend
+from server.controller import food_recommend
 from flask_cors import CORS
 from controller import worldcup
 
