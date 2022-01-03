@@ -1,9 +1,8 @@
 import { Route, Switch } from 'react-router-dom';
-
-import DetailRecommend from '../components/Detail/DetailRecomend';
-import Developer from '../components/Developer/Developer';
 import Introduce from '../components/Introduce/Introduce';
+import DetailRecommend from '../components/Detail/DetailRecomend';
 import RealTime from '../components/RealTime/RealTime';
+import Developer from '../components/Developer/Developer';
 
 const Index = () => {
     return (
