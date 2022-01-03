@@ -24,10 +24,10 @@ const Div = styled.div`
     }
 `;
 
-const HeaderView = ({ toggle, innerWidth }) => {
+const HeaderView = ({ toggle, innerWidth, toggleHandler }) => {
     return (
         <Div>
-            <MainLogo innerWidth={innerWidth} />
+            <MainLogo innerWidth={innerWidth} toggleHandler={toggleHandler} />
             {innerWidth >= 1040 && <MenuLink />}
             {innerWidth < 1040 && toggle && <MenuLink />}
         </Div>
