@@ -22,24 +22,23 @@ const RealTime = () => {
         console.log(id);
         history.push('/detail/' + id);
     };
-    const getRealTime = useCallback(async (latitude, longitude) => {
-        let nx = parseInt(latitude);
-        let ny = parseInt(longitude);
-        const res = await api.realtime.getRealTime(nx, ny);
-        console.log(res);
-        console.log(currentLocation);
+    const getRealTime = useCallback(async () => {
+        let nx = parseInt(currentLocation.latitude);
+        let ny = parseInt(currentLocation.longitude);
+        await api.realtime.getRealTime(nx, ny);
+        // console.log(JSON.stringify(res));
         //eslint-disable-next-line
-    }, []);
+    }, [currentLocation]);
 
     useEffect(() => {
         if (!currentLocation) {
             console.log(currentError);
             return;
         } else {
-            getRealTime(currentLocation.latitude, currentLocation.longitude);
+            getRealTime();
         }
         //eslint-disable-next-line
-    }, []);
+    }, [getRealTime]);
 
     return (
         <RealTimeView
