@@ -1,6 +1,5 @@
 from app import db
 from datetime import datetime
-from rabbitDate import rabbitDate
 
 class rabbitDateRanking(db.Model):
     __tablename__ ='rabbitDateRanking'
