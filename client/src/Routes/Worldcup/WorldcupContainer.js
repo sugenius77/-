@@ -65,6 +65,26 @@ const WorldcupContainer = () => {
         }
         return result;
     };
+
+    // api test
+    // const test = async() => {
+    //     //https://cors-anywhere.herokuapp.com/
+    //     await axios
+    //     .get(`https://cors-anywhere.herokuapp.com/http://127.0.0.1:5000/test`)
+    //     .then((res)=> {
+    //         console.log("testmessage",res);   
+    //     });
+        
+    // };
+    // const test1 = useEffect(() => {
+    //     test();
+    // }, [])
+    useEffect(() => {
+        fetch("/test").then(
+          (res) => {console.log(res)}
+        )
+      }, [])
+    
     return (
         <div>
             <ModalContainer/>
