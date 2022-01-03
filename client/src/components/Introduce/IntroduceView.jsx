@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 const Scene = styled.div`
     display: flex;
+    background-color: #cae8f9;
     flex-direction: column;
     height: ${(props) => props.scrollHeight}px;
     h1 {
@@ -41,16 +42,18 @@ const MainMessage = styled.div.attrs((props) => ({
 
 const End = styled.div`
     padding-top: 10vh;
-
-    img {
-        margin: 0;
-        padding: 0;
-        border: 1px solid black;
-    }
+    width: 0.8;
 `;
 
 const Button = styled.button`
     border: 1px solid red;
+    width: 30vw;
+    height: 10vh;
+    font-size: 2em;
+    margin: 15px;
+    background-color: #dc143c;
+    color: white;
+    font-weight: bold;
     round: 30;
 `;
 
