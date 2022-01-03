@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { HeaderContext } from './Header';
 const Div = styled.div`
     position: absolute;
     display: none;
@@ -20,17 +19,13 @@ const Button = styled.button`
     color: #ffffff;
 `;
 
-const MenuToggle = () => {
+const MenuToggle = ({ toggleHandler }) => {
     return (
-        <HeaderContext.Consumer>
-            {({ toggleHandler }) => (
-                <Div>
-                    <Button onClick={toggleHandler}>
-                        <img src={`${process.env.PUBLIC_URL}/header/menu_48.png`} alt="menu_button" />
-                    </Button>
-                </Div>
-            )}
-        </HeaderContext.Consumer>
+        <Div>
+            <Button onClick={toggleHandler}>
+                <img src={`${process.env.PUBLIC_URL}/header/menu_48.png`} alt="menu_button" />
+            </Button>
+        </Div>
     );
 };
 

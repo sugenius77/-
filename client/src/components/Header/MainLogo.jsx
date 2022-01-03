@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { HeaderContext } from './Header';
 import MenuToggle from './MenuToggle';
 
 const Div = styled.div`
@@ -13,17 +12,13 @@ const Div = styled.div`
     }
 `;
 
-const MainLogo = () => {
+const MainLogo = ({ innerWidth, toggleHandler }) => {
     return (
-        <HeaderContext.Consumer>
-            {({ innerWidth }) => (
-                <Div>
-                    <img src={`${process.env.PUBLIC_URL}/header/logo_48.png`} alt="logo" />
-                    <strong>구구절절</strong>
-                    {innerWidth <= 1040 && <MenuToggle />}
-                </Div>
-            )}
-        </HeaderContext.Consumer>
+        <Div>
+            <img src={`${process.env.PUBLIC_URL}/header/logo_48.png`} alt="logo" />
+            <strong>구구절절</strong>
+            {innerWidth <= 1040 && <MenuToggle toggleHandler={toggleHandler} />}
+        </Div>
     );
 };
 

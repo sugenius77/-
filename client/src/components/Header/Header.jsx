@@ -11,21 +11,19 @@ const Header = () => {
     };
 
     //브라우저의 길이를 반환하는 이벤트
-    const InnerWidth = () => {
+    const getInnerWidth = () => {
         return setInnerWidth(window.innerWidth);
     };
 
     useEffect(() => {
-        window.addEventListener('resize', InnerWidth);
+        window.addEventListener('load', getInnerWidth);
+        window.addEventListener('resize', getInnerWidth);
         return () => {
-            window.removeEventListener('resize', InnerWidth);
+            window.removeEventListener('load', getInnerWidth);
+            window.removeEventListener('resize', getInnerWidth);
         };
     }, []);
 
-    return (
-        <HeaderContext.Provider value={{ innerWidth: innerWidth, toggle: toggle, toggleHandler: toggleHandler }}>
-            <HeaderView />
-        </HeaderContext.Provider>
-    );
+    return <HeaderView innerWidth={innerWidth} toggle={toggle} toggleHandler={toggleHandler} />;
 };
 export default Header;

@@ -1,16 +1,14 @@
 import MainLogo from './MainLogo';
-import Menu from './Menu';
+import MenuLink from './MenuLink';
 import styled from 'styled-components';
-import { HeaderContext } from './Header';
 
 const Div = styled.div`
+    z-index: 1;
     position: fixed;
     margin-top: -1px;
     padding-top: 1px;
     top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -25,17 +23,13 @@ const Div = styled.div`
     }
 `;
 
-const HeaderView = () => {
+const HeaderView = ({ toggle, innerWidth }) => {
     return (
-        <HeaderContext.Consumer>
-            {({ toggle, innerWidth }) => (
-                <Div>
-                    <MainLogo />
-                    {innerWidth >= 1040 && <Menu />}
-                    {innerWidth < 1040 && toggle && <Menu />}
-                </Div>
-            )}
-        </HeaderContext.Consumer>
+        <Div>
+            <MainLogo innerWidth={innerWidth} />
+            {innerWidth >= 1040 && <MenuLink />}
+            {innerWidth < 1040 && toggle && <MenuLink />}
+        </Div>
     );
 };
 
