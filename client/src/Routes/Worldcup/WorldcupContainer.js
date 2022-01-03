@@ -4,8 +4,6 @@ import axios from "axios";
 import ModalContainer from '../../Components/Modal/ModalContainer'
 import styled, {css, keyframes} from "styled-components";
 import WorldcupPresenter from './WorldcupPresenter';
-import Navbar from './Navbar';
-import WorldcupContainer from '.';
 
 const name = ["짜장면","볶음밥"];
     
@@ -55,23 +53,7 @@ const WorldcupContainer = () => {
         SetOn(!on);
         console.log(on);
     }
-    // const test = async() => {
-    //     //https://cors-anywhere.herokuapp.com/
-    //     await axios
-    //     .get(`https://cors-anywhere.herokuapp.com/http://127.0.0.1:5000/test`)
-    //     .then((res)=> {
-    //         console.log("testmessage",res);   
-    //     });
-        
-    // };
-    // const test1 = useEffect(() => {
-    //     test();
-    // }, [])
-    // useEffect(() => {
-    //     fetch("/test").then(
-    //       (res) => {console.log(res)}
-    //     )
-    //   }, [])
+    
     
     const menufunction = () => {
         const result = []
