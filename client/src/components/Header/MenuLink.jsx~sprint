@@ -7,7 +7,6 @@ const Div = styled.div`
     justify-content: space-between;
     align-items: center;
     margin: auto;
-    background-color: white;
 
     a {
         justify-content: space-between;
@@ -24,10 +23,17 @@ const Div = styled.div`
         align-items: center;
         text-align: center;
         width: 100%;
+<<<<<<< HEAD
         a {
             width: 100%;
             margin-top: 4px;
             height: auto;
+=======
+
+        a {
+            width: 100%;
+            margin-top: 4px;
+>>>>>>> feat:코드리뷰 useContext 정리 및 API 테스트
         }
     }
 `;
