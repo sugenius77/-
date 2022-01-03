@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 const Scene = styled.div`
     display: flex;
     background-color: #cae8f9;
-    margin-top: 10vh;
     flex-direction: column;
     height: ${(props) => props.scrollHeight}px;
     h1 {
@@ -57,11 +56,9 @@ const LinkDiv = styled.div`
     width: 30vw;
     height: 10vh;
     font-size: 2em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     margin: 15px;
     background-color: #dc143c;
+    color: white;
     font-weight: bold;
     round: 30;
 
