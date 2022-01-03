@@ -3,13 +3,12 @@ import MenuLink from './MenuLink';
 import styled from 'styled-components';
 
 const Div = styled.div`
+    z-index: 1;
     position: fixed;
     margin-top: -1px;
     padding-top: 1px;
     top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -25,12 +24,12 @@ const Div = styled.div`
     }
 `;
 
-const HeaderView = ({ toggle, innerWidth, toggleHandler }) => {
+const HeaderView = ({ toggle, innerWidth }) => {
     return (
-        <Div innerWidth={toggle}>
-            <MainLogo innerWidth={innerWidth} toggleHandler={toggleHandler} />
-            {innerWidth > 1040 && <MenuLink />}
-            {innerWidth <= 1040 && toggle && <MenuLink />}
+        <Div>
+            <MainLogo innerWidth={innerWidth} />
+            {innerWidth >= 1040 && <MenuLink />}
+            {innerWidth < 1040 && toggle && <MenuLink />}
         </Div>
     );
 };
