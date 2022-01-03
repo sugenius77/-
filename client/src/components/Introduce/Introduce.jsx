@@ -1,7 +1,6 @@
-import { useEffect, useState, useMemo, useCallback, createContext } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import IntroduceView from './IntroduceView';
 
-export const ScrollContext = createContext();
 const Introduce = () => {
     const heightNum = 5; // 브라우저의 높이의 5배로 scrollHeight 세팅
     const [yOffset, setYOffset] = useState(0); // 윈도우의 현재 높이
@@ -40,16 +39,18 @@ const Introduce = () => {
                 heightNum: heightNum,
                 values: {
                     opacity: [
-                        [0, 1, { start: 0.1, end: 0.2 }, { start: 0.25, end: 0.3 }],
-                        [0, 1, { start: 0.3, end: 0.4 }, { start: 0.35, end: 0.5 }],
-                        [0, 1, { start: 0.5, end: 0.6 }, { start: 0.65, end: 0.7 }],
-                        [0, 1, { start: 0.7, end: 0.8 }, { start: 0.85, end: 0.9 }],
+                        [0, 1, { start: -0.1, end: 0 }, { start: 0, end: 0.1 }],
+                        [0, 1, { start: 0.25, end: 0.35 }, { start: 0.4, end: 0.45 }],
+                        [0, 1, { start: 0.45, end: 0.6 }, { start: 0.65, end: 0.7 }],
+                        [0, 1, { start: 0.7, end: 0.76 }, { start: 0.76, end: 0.83 }],
+                        [0, 1, { start: 0.83, end: 0.86 }, { start: 0.86, end: 0.9 }],
                     ],
                     translateY: [
-                        [0, 20, { start: 0.1, end: 0.2 }, { start: 0.25, end: 0.3 }],
-                        [0, 20, { start: 0.3, end: 0.4 }, { start: 0.45, end: 0.5 }],
-                        [0, 20, { start: 0.5, end: 0.6 }, { start: 0.65, end: 0.7 }],
-                        [0, 20, { start: 0.7, end: 0.8 }, { start: 0.85, end: 0.9 }],
+                        [0, 20, { start: -0.1, end: 0 }, { start: 0, end: 0.1 }],
+                        [0, 20, { start: 0.25, end: 0.35 }, { start: 0.4, end: 0.45 }],
+                        [0, 20, { start: 0.45, end: 0.6 }, { start: 0.65, end: 0.7 }],
+                        [0, 20, { start: 0.7, end: 0.76 }, { start: 0.76, end: 0.83 }],
+                        [0, 20, { start: 0.83, end: 0.86 }, { start: 0.86, end: 0.9 }],
                     ],
                 },
             },
@@ -248,9 +249,12 @@ const Introduce = () => {
     }, [sceneInfo, currentScene, calcTranslateY]);
 
     return (
-        <ScrollContext.Provider value={{ currentScene, sceneInfo, messageOpacity, messageTranslateY }}>
-            <IntroduceView />
-        </ScrollContext.Provider>
+        <IntroduceView
+            currentScene={currentScene}
+            sceneInfo={sceneInfo}
+            messageOpacity={messageOpacity}
+            messageTranslateY={messageTranslateY}
+        />
     );
 };
 

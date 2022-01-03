@@ -5,11 +5,10 @@ import Loading from '../Loading';
 
 const Div = styled.div`
     display: flex;
-    top: 35vh;
     flex-direction: column;
     justify-content: center;
 `;
-const RealTimeView = () => {
+export const RealTimeView = () => {
     return (
         <RealTimeContext.Consumer>
             {({ loading, loadingPercent, setLoadingPercent }) => (

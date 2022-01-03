@@ -14,7 +14,6 @@ const TitleDiv = styled.div`
 
 const FoodDiv = styled.div`
     font-size: 32px;
-    padding: 8px 12px;
     background-color: #cae8f9;
 `;
 const RecommendCard = ({ title, path, food, onClick }) => {
@@ -23,7 +22,7 @@ const RecommendCard = ({ title, path, food, onClick }) => {
     };
 
     return (
-        <Div onMouseUp={clickHandler}>
+        <Div onClick={clickHandler}>
             <TitleDiv>{title}</TitleDiv>
             <div style={{ height: '512px', backgroundColor: 'gray' }}>{path}</div>
             <FoodDiv>{food}</FoodDiv>
