@@ -62,8 +62,8 @@ def get_reommendation():
         "dataType=json" + "&" +\
         "base_date=" + base_date + "&" +\
         "base_time=" + base_time + "&" +\
-        "nx=" + nx + "&" +\
-        "ny=" + ny
+        "nx=" + str(nx) + "&" +\
+        "ny=" + str(ny)
         res = requests.get(url + payload)
         items = res.json().get('response').get('body').get('items')
         weather_data = dict()
