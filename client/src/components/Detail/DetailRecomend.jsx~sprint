@@ -37,8 +37,8 @@ const ItemWrap = styled.div`
 
     .ItemWrap-Top {
         display: flex;
-
-        height: 35vh;
+        width: 350px;
+        height: 170px;
         border-top-left-radius: 6px;
         border-top-right-radius: 6px;
         background-color: #e2e5e7;
@@ -47,70 +47,33 @@ const ItemWrap = styled.div`
         justify-content: center;
         text-align: center;
         align-items: center;
-        overflow: hidden;
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
     }
 
     .ItemWrap-Body {
+        height: 200px;
         border-bottom-left-radius: 6px;
         border-bottom-right-radius: 6px;
-        font-size: 1rem;
-        font-weight: bold;
-        justify-content: center;
-        display: flex;
-        align-items: start;
+        padding: 10px;
     }
 
     .ItemWrap-Body-Title {
+        width: 300px;
+        height: 36px;
+        margin: 16px;
         border-radius: 4px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: calc(1vw + 1vh + 1vmin);
-    }
-
-    .ItemWrap-Rating {
-        padding: 10px 12px;
-        font-weight: bold;
-        font-size: 2rem;
-        display: flex;
-        justify-content: right;
-        align-items: center;
-
-        img {
-            max-width: 3rem;
-            min-width: calc(1vw+1vh+1vmin);
-        }
+        background-color: #e2e5e7;
     }
 `;
 
-const Item = ({ imgSrc, menuName, rating }) => {
-    const [toggle, setToggle] = useState(false);
-    const [number, setNumber] = useState(rating);
-    const plusHandler = () => {
-        if (toggle === false) {
-            setNumber((cur) => cur + 1);
-        } else if (toggle === true) {
-            setNumber((cur) => cur - 1);
-        }
-        setToggle((cur) => !cur);
-    };
+const Item = ({ imgSrc }) => {
     return (
         <ItemWrap>
             <div className="ItemWrap">
-                <div className="ItemWrap-Top ">
-                    <img src={`${process.env.PUBLIC_URL}${imgSrc}`} alt={`'메뉴이미지'`} />
-                </div>
-                <div className="ItemWrap-Rating">
-                    <div className="ItemWrap-Body-Title ">{menuName}</div>
-                    <button onClick={plusHandler}>
-                        <img src={`${process.env.PUBLIC_URL}/${toggle ? 'heart_on.png' : 'heart_off.png'}`} alt="좋아요" />
-                    </button>
-                    {number}
+                <div className="ItemWrap-Top ">{imgSrc}</div>
+                <div className="ItemWrap-Body">
+                    <div className="ItemWrap-Body-Title " />
+                    <div className="ItemWrap-Body-Title " />
+                    <div className="ItemWrap-Body-Title " />
                 </div>
             </div>
         </ItemWrap>

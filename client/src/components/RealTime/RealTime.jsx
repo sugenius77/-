@@ -98,6 +98,32 @@ const RealTime = () => {
             />
         );
     };
+    const getRealTime = useCallback(async () => {
+        let nx = parseInt(currentLocation.latitude);
+        let ny = parseInt(currentLocation.longitude);
+        await api.realtime.getRealTime(nx, ny);
+        // console.log(JSON.stringify(res));
+        //eslint-disable-next-line
+    }, [currentLocation]);
+
+    useEffect(() => {
+        if (!currentLocation) {
+            console.log(currentError);
+            return;
+        } else {
+            getRealTime();
+        }
+        //eslint-disable-next-line
+    }, [getRealTime]);
+
+    return (
+        <RealTimeView
+            loading={loading}
+            recommendHandler={recommendHandler}
+            setLoadingProgress={setLoadingPercent}
+            loadingProgress={loadingPercent}
+        />
+    );
 };
 
 export default RealTime;
