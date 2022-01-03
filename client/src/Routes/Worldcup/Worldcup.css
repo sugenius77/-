@@ -1,0 +1,17 @@
+.img1 {
+  display: flex;
+  width: 300px;
+  justify-content: center;
+  align-items: end;
+  /* background: url(../images/food_images/3.png) no-repeat; */
+  background-size: cover;
+}
+.btndark {
+  background-color: orange;
+  transition: all 0.1s linear;
+  
+}
+.btndark:hover {
+  transform: translateX( 50px );
+  /* transform: scaleX( 1.5 ); */
+}
