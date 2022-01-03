@@ -2,6 +2,7 @@ from flask import Flask
 from models.db_connect import db
 from flask_migrate import Migrate
 from config import config
+
 from controller import food_recommend
 from flask_cors import CORS
 from controller import worldcup
@@ -33,6 +34,7 @@ def create_app():
     migrate.init_app(app, db)
     
     app.register_blueprint(food_recommend.food)
+
     app.register_blueprint(worldcup.worldcup)
 
     return app
