@@ -1,6 +1,8 @@
 import realtime from './realtime.js';
-import menu from './menu.js';
+import Axios from 'axios';
 
-const api = { realtime, menu };
+export const axios = new Axios();
+
+const api = { realtime };
 
 export default api;

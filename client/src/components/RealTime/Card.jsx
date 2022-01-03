@@ -30,27 +30,12 @@ const ImgDiv = styled.div`
     }
 `;
 
-const FoodDiv = styled.div`
-    font-size: 2rem;
-    height: 5vh;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #cae8f9;
-`;
-const Card = ({ title, path, food, onClick }) => {
-    const clickHandler = () => {
-        onClick(food);
-    };
-
+const Card = ({ recommendHandler }) => {
     return (
-        <Div onClick={clickHandler}>
-            <TitleDiv>{title}</TitleDiv>
-            <ImgDiv>
-                <img src={`${process.env.PUBLIC_URL}/${path}`} alt="사진" />
-            </ImgDiv>
-            <FoodDiv>{food}</FoodDiv>
+        <Div>
+            <RecommendCard key={'날씨'} title="맑음" path="이미지 경로1" food="치킨" onClick={recommendHandler} />
+            <RecommendCard key={'요일'} title={'월요알'} path="이미지 경로2" food="중식" onClick={recommendHandler} />
+            <RecommendCard key={'시간'} title={'시분'} path="이미지 경로3" food="양식" onClick={recommendHandler} />
         </Div>
     );
 };
