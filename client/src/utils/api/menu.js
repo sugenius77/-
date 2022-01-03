@@ -14,6 +14,9 @@ class Menu {
             .put('/food/like', {
                 menu_id: menuId,
             })
+            .then((res) => {
+                console.log(res);
+            })
             .catch((err) => console.log(err));
     }
 
@@ -21,6 +24,9 @@ class Menu {
         axios
             .put('/food/dislike', {
                 menu_id: menuId,
+            })
+            .then((res) => {
+                console.log(res);
             })
             .catch((err) => console.log(err));
     }
