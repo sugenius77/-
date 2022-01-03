@@ -217,7 +217,7 @@ const Introduce = () => {
                     rv = values[1];
                 }
                 if (translateInScrollStart <= currentYoffset && currentYoffset <= translateOutScrollEnd) {
-                    rv = ((translateOutScrollEnd - currentYoffset) / translateInScrollHeight) * (values[0] - values[1]);
+                    rv = -((translateOutScrollEnd - currentYoffset) / translateInScrollHeight) * (values[1] - values[0]);
                 }
             } else {
                 rv = scrollRatio * (values[1] - values[0]) + values[0];
@@ -245,6 +245,7 @@ const Introduce = () => {
         for (let i = 0; i < values.length; i++) {
             message.push(calcTranslateY(values[i]));
         }
+        console.log(message);
         return message;
     }, [sceneInfo, currentScene, calcTranslateY]);
 

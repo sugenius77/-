@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 const Scene = styled.div`
     display: flex;
     background-color: #cae8f9;
-    margin-top: 10vh;
     flex-direction: column;
     height: ${(props) => props.scrollHeight}px;
     h1 {
@@ -46,10 +45,7 @@ const MainMessage = styled.div.attrs((props) => ({
 
 const End = styled.div`
     padding-top: 10vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    width: 0.8;
 `;
 
 const LinkDiv = styled.div`
@@ -57,11 +53,9 @@ const LinkDiv = styled.div`
     width: 30vw;
     height: 10vh;
     font-size: 2em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     margin: 15px;
     background-color: #dc143c;
+    color: white;
     font-weight: bold;
     round: 30;
 
