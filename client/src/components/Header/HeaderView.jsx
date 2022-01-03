@@ -4,10 +4,13 @@ import styled from 'styled-components';
 import { HeaderContext } from './Header';
 
 const Div = styled.div`
-    position: sticky;
+    position: fixed;
+    margin-top: -1px;
+    padding-top: 1px;
     top: 0;
     left: 0;
     right: 0;
+    z-index: 1;
     display: flex;
     justify-content: space-between;
     align-items: center;
