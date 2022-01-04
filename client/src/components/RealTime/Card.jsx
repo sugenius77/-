@@ -3,23 +3,10 @@ import styled from 'styled-components';
 const Div = styled.div`
     display: flex;
     flex-direction: column;
-`;
-
-const TitleDiv = styled.div`
-    font-size: 2rem;
-    font-weight: bold;
-    height: 5vh;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    align-items: center;
-    color: white;
-    background-color: #fec478;
-`;
-
-const ImgDiv = styled.div`
-    display: flex;
-    height: 80vh;
+    margin: auto;
+    bottom: 0;
+    direction: row;
+    justify-content: space-between;
     align-items: center;
     background-color: gray;
     overflow: hidden;
@@ -30,12 +17,20 @@ const ImgDiv = styled.div`
     }
 `;
 
-const Card = ({ recommendHandler }) => {
+const Card = ({ recommendHandler, data }) => {
     return (
         <Div>
-            <RecommendCard key={'날씨'} title="맑음" path="이미지 경로1" food="치킨" onClick={recommendHandler} />
-            <RecommendCard key={'요일'} title={'월요알'} path="이미지 경로2" food="중식" onClick={recommendHandler} />
-            <RecommendCard key={'시간'} title={'시분'} path="이미지 경로3" food="양식" onClick={recommendHandler} />
+            {data.map((info) => (
+                <RecommendCard
+                    key={info?.value}
+                    title={info?.value}
+                    path={info?.image_url[0]}
+                    food={info?.kinds_name[0]}
+                    onClick={recommendHandler}
+                />
+            ))}
+
+            {/*<RecommendCard key="weather" title={data.weather.weather} path="이미지 경로3" food="양식" onClick={recommendHandler} /> */}
         </Div>
     );
 };

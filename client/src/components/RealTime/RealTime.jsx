@@ -15,18 +15,41 @@ const geolocationOptions = {
 
 const RealTime = () => {
     const [loadingPercent, setLoadingPercent] = useState(0);
-    const loading = useMemo(() => (loadingPercent === 125 ? true : false), [loadingPercent]);
     const { location: currentLocation, error: currentError } = useCurrentLocation(geolocationOptions);
+    const [data, setData] = useState([]);
+    const history = useHistory();
+    const loading = useMemo(() => (loadingPercent >= 125 ? true : false), [loadingPercent]);
 
     const recommendHandler = (id) => {
         console.log(id);
         history.push('/detail/' + id);
     };
+
+    useEffect(() => {
+        setTimeout(() => {
+            setLoadingPercent((cur) => cur + 25);
+        }, 1000);
+        return () => {
+            setLoadingPercent(0);
+            setData([]);
+        };
+    }, []);
+
     const getRealTime = useCallback(async () => {
         let nx = parseInt(currentLocation.latitude);
         let ny = parseInt(currentLocation.longitude);
         const res = await api.realtime.getRealTime(nx, ny);
         console.log(res);
+        setData(() => {
+            const newData = [...res.data];
+            return newData;
+        });
+        setTimeout(() => {
+            setLoadingPercent((cur) => cur + 25);
+        }, 2000);
+        setTimeout(() => {
+            setLoadingPercent((cur) => cur + 25);
+        }, 3000);
         //eslint-disable-next-line
     }, [currentLocation]);
 
@@ -34,18 +57,33 @@ const RealTime = () => {
         if (!currentLocation) {
             console.log(currentError);
             return;
-        } else {
+        } else if (data.length < 1) {
             getRealTime();
         }
         //eslint-disable-next-line
     }, [getRealTime]);
 
+    useEffect(() => {
+        if (data.length > 0) {
+            setTimeout(() => {
+                setLoadingPercent((cur) => cur + 25);
+            }, 4000);
+            setTimeout(() => {
+                setLoadingPercent((cur) => cur + 20);
+            }, 5000);
+            setTimeout(() => {
+                setLoadingPercent((cur) => cur + 20);
+            }, 1000);
+        }
+    }, [data]);
+
     return (
         <RealTimeView
             loading={loading}
             recommendHandler={recommendHandler}
-            setLoadingProgress={setLoadingPercent}
-            loadingProgress={loadingPercent}
+            setLoadingPercent={setLoadingPercent}
+            loadingPercent={loadingPercent}
+            data={data}
         />
     );
 };
