@@ -2,10 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './Components/App';
 import reportWebVitals from './reportWebVitals';
-
+import {BrowserRouter} from 'react-router-dom';
+import Test from './Test';
+import './lang/i18n';
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+      {/* <Test/> */}
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

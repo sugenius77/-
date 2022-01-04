@@ -23,8 +23,6 @@ function WorldcupPresenter({menu}) {
             <h2>선택하신 메뉴 {menu}은 현재 {"3등"}입니다.</h2>
             <Image bgurl={menu}/>
             <button onClick={nextpage}>현재순위 보러가기</button>
-            
-            
         </div>
     )
 }
