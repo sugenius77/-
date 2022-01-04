@@ -10,6 +10,7 @@ const Div = styled.div`
     color: white;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     background-color: #cae8f9;
 `;
 
@@ -20,7 +21,7 @@ const ItemWrap = styled.div`
         display: flex;
         flex-direction: column;
         background-color: #ffffff;
-        margin: 1rem;
+        margin: 10vw 30vh;
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
         border-radius: 6px;
     }
@@ -55,15 +56,16 @@ const ItemWrap = styled.div`
     }
 `;
 
-const Item = ({ imgSrc }) => {
+const Item = ({ imgSrc, menuName, rating }) => {
     return (
         <ItemWrap>
             <div className="ItemWrap">
-                <div className="ItemWrap-Top ">{imgSrc}</div>
+                <div className="ItemWrap-Top ">
+                    <img src={`${process.env.PUBLIC_URL + imgSrc}.jpg`} alt={`'메뉴이미지'`} />
+                </div>
                 <div className="ItemWrap-Body">
-                    <div className="ItemWrap-Body-Title " />
-                    <div className="ItemWrap-Body-Title " />
-                    <div className="ItemWrap-Body-Title " />
+                    <div className="ItemWrap-Body-Title ">{menuName}</div>
+                    <div className="ItemWrap-Body-Title ">{rating}</div>
                 </div>
             </div>
         </ItemWrap>
@@ -87,6 +89,9 @@ const Detail = () => {
             newMenu.push({ menu_name: 'BBQ', image_url: '/introduce/introduce_2', toggle_rating: 14 });
             newMenu.push({ menu_name: 'BHC', image_url: '/introduce/introduce_1', toggle_rating: 13 });
             newMenu.push({ menu_name: '치킨플러스', image_url: '/introduce/introduce_0', toggle_rating: 14 });
+            newMenu.push({ menu_name: 'BBQ', image_url: '/introduce/introduce_2', toggle_rating: 14 });
+            newMenu.push({ menu_name: 'BHC', image_url: '/introduce/introduce_1', toggle_rating: 13 });
+            newMenu.push({ menu_name: '치킨플러스', image_url: '/introduce/introduce_0', toggle_rating: 14 });
             return newMenu;
         });
         //eslint-disable-next-line
@@ -99,7 +104,7 @@ const Detail = () => {
     return (
         <Div>
             {menuData.map((menu, idx) => {
-                return <Item key={idx} imgSrc={menu.image_url} menuName={menu.menu_name} />;
+                return <Item key={idx} imgSrc={menu.image_url} menuName={menu.menu_name} rating={menu.toggle_rating} />;
             })}
             {/* <ScrollView ref={ref}>Element {inView.toString()}</ScrollView> */}
         </Div>
