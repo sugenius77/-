@@ -212,12 +212,12 @@ const Introduce = () => {
                 const translateOutScrollEnd = values[3].end * scrollHeight;
 
                 if (translateInScrollStart <= currentYoffset && currentYoffset <= translateInScrollEnd) {
-                    rv = -((currentYoffset - translateInScrollStart) / translateInScrollHeight) * (values[1] - values[0]);
+                    rv = ((currentYoffset - translateInScrollStart) / translateInScrollHeight) * (values[1] - values[0]);
                 } else if (translateInScrollEnd <= currentYoffset && currentYoffset <= translateOutScrollStart) {
                     rv = values[1];
                 }
                 if (translateInScrollStart <= currentYoffset && currentYoffset <= translateOutScrollEnd) {
-                    rv = -((translateOutScrollEnd - currentYoffset) / translateInScrollHeight) * (values[1] - values[0]);
+                    rv = ((translateOutScrollEnd - currentYoffset) / translateInScrollHeight) * (values[0] - values[1]);
                 }
             } else {
                 rv = scrollRatio * (values[1] - values[0]) + values[0];
@@ -245,7 +245,6 @@ const Introduce = () => {
         for (let i = 0; i < values.length; i++) {
             message.push(calcTranslateY(values[i]));
         }
-        console.log(message);
         return message;
     }, [sceneInfo, currentScene, calcTranslateY]);
 
