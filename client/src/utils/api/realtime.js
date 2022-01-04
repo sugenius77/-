@@ -1,7 +1,8 @@
 import axios from 'axios';
 class RealTime {
     async getRealTime(nx, ny) {
-        axios.get('/food/recommendation', {
+        axios
+            .get('/food/recommendation', {
                 params: {
                     nx: nx,
                     ny: ny,

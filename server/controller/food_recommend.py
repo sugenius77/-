@@ -62,8 +62,8 @@ def get_reommendation():
         "dataType=json" + "&" +\
         "base_date=" + base_date + "&" +\
         "base_time=" + base_time + "&" +\
-        "nx=" + str(nx) + "&" +\
-        "ny=" + str(ny)
+        "nx=" + nx + "&" +\
+        "ny=" + ny
         res = requests.get(url + payload)
         items = res.json().get('response').get('body').get('items')
         weather_data = dict()
@@ -132,8 +132,8 @@ def get_reommendation():
         "image_url": [Dimg[i][0] for i in range(0,2)],
         "kinds_name": [Dname[i][0] for i in range(0,2)]
         }
-
-    # 시간에 따른 추천
+        
+    #시간에 따른 추천
         timeslot = (str(time.localtime().tm_hour))   
         time_Id = db.session.query(rabbitTime.id).filter(rabbitTime.time_slot == timeslot).first()
         time_kindsId = db.session.query(rabbitTimeRanking.kinds_id)\
@@ -156,7 +156,8 @@ def get_reommendation():
         "image_url": [Timg[i][0] for i in range(0,2)],
         "kinds_name": [Tname[i][0] for i in range(0,2)]
         }
-        result ={"weather":weather_result, "date":date_result,"time": time_result }
+
+        result = {'weather' : weather_result, 'date' : date_result, 'time':time_result}
         return jsonify(result)
     except Exception as ex:
         print("error",ex)
