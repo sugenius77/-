@@ -1,9 +1,11 @@
 from flask import Blueprint , request, jsonify
-from models.rabbitMenu import rabbitMenu, db
 from sqlalchemy.sql.expression import func
+from util.WorldcupService import WorldcupService
 
 worldcup = Blueprint('worldcup', __name__, url_prefix='/worldcup')
 status_code ={'success':200, 'bad_request':400, 'server_error':500}
+world_service = WorldcupService()
+
 
 '''
     GET 요청시
@@ -11,40 +13,34 @@ status_code ={'success':200, 'bad_request':400, 'server_error':500}
 
     PUT 요청시
     선택된 메뉴의 레이팅 향상
+    랭킹의 초기화
     
 '''
 @worldcup.route('/rank',methods=['GET','PUT'])
 def rank():
+    global world_service
 
     if request.method == 'GET':
-        ranking_list = rabbitMenu.query\
-            .order_by(rabbitMenu.world_ranking.asc())\
-            .with_entities(
-                rabbitMenu.menu_name,
-                rabbitMenu.world_ranking,
-                rabbitMenu.image_url
-            ).all()
-        ranking_list =dict((a,{"img_url":c,"ranking": b}) for a,b,c in ranking_list)
-
+        ranking_list = world_service.get_world_ranking_list()
         return jsonify(ranking_list)
-
+    
     if request.method == 'PUT':
-        menu_name = request.get_json()['menu_name']
-        rating = rabbitMenu.query\
-            .filter(rabbitMenu.menu_name == menu_name)\
-            .first()
 
-        rating.world_rating +=1
+        menu_id = request.get_json()['menu_id']
+        menu_id = int(menu_id)
 
-        db.session.commit()
+        world_service.put_world_rating_increase(menu_id)
+        world_service.world_ranking_sort()
+
         return jsonify(status_code['success'])
+
 
 '''
     GET 요청시
     figma 4-3의 선택된 메뉴의 랭킹이름과 랭킹을 반환.
-    요청 예시: server주소/output_rank?menu_name=뿌링클 치킨
-'''
+    요청 예시: server주소/output_rank?menu_id=1
 
+'''
 @worldcup.route('/output_rank', methods=['GET'])
 def output_rank():
     
@@ -53,20 +49,11 @@ def output_rank():
     
     if request.method == 'GET':
         parameter_dict = request.args.to_dict()
-        menu_name = parameter_dict['menu_name']
-        
-        ranking_list = rabbitMenu.query\
-            .filter(rabbitMenu.menu_name == menu_name)\
-            .with_entities(
-                rabbitMenu.menu_name,
-                rabbitMenu.world_ranking
-            ).first()
+        menu_id = parameter_dict['menu_id']
+        ranking_list = world_service.get_world_food_rank(menu_id)
 
         return jsonify(dict(ranking_list))
     
-    else:
-        return jsonify(status_code['bad_request'])
-
 
 '''
     GET 요청시
@@ -84,17 +71,7 @@ def start_rank():
     if request.method == 'GET':
         parameter_dict = request.args.to_dict()
         round = parameter_dict['round']
-        
-        ranking_list = rabbitMenu.query\
-            .with_entities(
-                rabbitMenu.menu_name,
-                rabbitMenu.world_ranking,
-                rabbitMenu.image_url
-            ).order_by(func.rand())\
-            .limit(int(round))
-
-        ranking_list =dict((a,{"img_url":c,
-            "ranking": b}) for a,b,c in ranking_list)
+        ranking_list = world_service.get_world_startround(round)
 
         return jsonify(ranking_list)
     
