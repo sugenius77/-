@@ -3,30 +3,16 @@ import Card from './Card';
 import Loading from '../Loading';
 
 const Div = styled.div`
+    margin-top: 15vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
 `;
-export const RealTimeView = ({ loading, loadingPercent, setLoadingPercent, recommendHandler }) => {
+export const RealTimeView = ({ loading, loadingPercent, recommendHandler, data }) => {
     return (
         <Div>
             {!loading && <Loading loadingPercent={loadingPercent} />}
-            <p>{loadingPercent}</p>
-            <button
-                onClick={() => {
-                    setLoadingPercent((cur) => cur + 25);
-                }}
-            >
-                버튼
-            </button>
-            <button
-                onClick={() => {
-                    setLoadingPercent(0);
-                }}
-            >
-                초기화
-            </button>
-            <Card recommendHandler={recommendHandler} />
+            {loading && <Card recommendHandler={recommendHandler} data={data} />}
         </Div>
     );
 };
