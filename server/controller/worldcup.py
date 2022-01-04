@@ -5,6 +5,7 @@ worldcup = Blueprint('worldcup', __name__, url_prefix='/worldcup')
 status_code ={'success':200, 'bad_request':400, 'server_error':500}
 world_service = WorldcupService()
 
+
 '''
     error 모음
 '''
