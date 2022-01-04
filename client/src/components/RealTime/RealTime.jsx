@@ -25,8 +25,8 @@ const RealTime = () => {
     const getRealTime = useCallback(async () => {
         let nx = parseInt(currentLocation.latitude);
         let ny = parseInt(currentLocation.longitude);
-        await api.realtime.getRealTime(nx, ny);
-        // console.log(JSON.stringify(res));
+        const res = await api.realtime.getRealTime(nx, ny);
+        console.log(res);
         //eslint-disable-next-line
     }, [currentLocation]);
 
