@@ -94,6 +94,7 @@ def get_reommendation():
                     .all()
         Wimg = []
         Wname =[]
+        
         for i in range(0,2):
             weather_image = db.session.query(rabbitMenu.image_url)\
                         .filter(rabbitMenu.kinds_id == weather_kindsId[i][0])\
@@ -105,7 +106,6 @@ def get_reommendation():
                         .first()
             Wimg.append(weather_image)
             Wname.append(weather_kindsName)
-             
         weather_result = {
         "weather": weather_name[0],
         "image_url": [Wimg[i][0] for i in range(0,2)],
@@ -127,6 +127,7 @@ def get_reommendation():
                         .filter(rabbitKinds.id == date_kindsId[i][0]).first()
             Dimg.append(date_image)
             Dname.append(date_kindsName)   
+        
         date_result = {
         "date": date_name[0],
         "image_url": [Dimg[i][0] for i in range(0,2)],
@@ -171,12 +172,14 @@ def post_menu():
         list = rabbitMenu.query\
                 .filter(rabbitMenu.kinds_id == kindsID)\
                 .limit(limit_num)\
-                .all()
-        result ={
-        "menu_name":[i.menu_name for i in list],
-        "image_url":[i.image_url for i in list],
-        "toggle_rating":[i.toggle_rating for i in list]
-        }
+                .with_entities(
+                    rabbitMenu.menu_name,
+                    rabbitMenu.image_url,
+                    rabbitMenu.toggle_rating
+                ).all()
+        result =[]
+        for item in list:
+            result.append(dict({"menu_name":item[0],"image_url":item[1],"toggle_rating" :item[2]}))
         return jsonify(result)
     except Exception as ex:
         print("error",ex)
