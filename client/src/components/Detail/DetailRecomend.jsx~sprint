@@ -26,6 +26,7 @@ const ItemWrap = styled.div`
         display: flex;
         flex-direction: column;
         background-color: #ffffff;
+        margin: 10vw 30vh;
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
         border-radius: 6px;
         margin: 0 1vw;
@@ -65,15 +66,16 @@ const ItemWrap = styled.div`
     }
 `;
 
-const Item = ({ imgSrc }) => {
+const Item = ({ imgSrc, menuName, rating }) => {
     return (
         <ItemWrap>
             <div className="ItemWrap">
-                <div className="ItemWrap-Top ">{imgSrc}</div>
+                <div className="ItemWrap-Top ">
+                    <img src={`${process.env.PUBLIC_URL + imgSrc}.jpg`} alt={`'메뉴이미지'`} />
+                </div>
                 <div className="ItemWrap-Body">
-                    <div className="ItemWrap-Body-Title " />
-                    <div className="ItemWrap-Body-Title " />
-                    <div className="ItemWrap-Body-Title " />
+                    <div className="ItemWrap-Body-Title ">{menuName}</div>
+                    <div className="ItemWrap-Body-Title ">{rating}</div>
                 </div>
             </div>
         </ItemWrap>
