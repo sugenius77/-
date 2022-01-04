@@ -44,13 +44,20 @@ const Card = ({ title, path, food, onClick }) => {
         onClick(food);
     };
 
+const Card = ({ recommendHandler, data }) => {
     return (
-        <Div onClick={clickHandler}>
-            <TitleDiv>{title}</TitleDiv>
-            <ImgDiv>
-                <img src={`${process.env.PUBLIC_URL}/${path}`} alt="사진" />
-            </ImgDiv>
-            <FoodDiv>{food}</FoodDiv>
+        <Div>
+            {data.map((info) => (
+                <RecommendCard
+                    key={info?.value}
+                    title={info?.value}
+                    path={info?.image_url[0]}
+                    food={info?.kinds_name[0]}
+                    onClick={recommendHandler}
+                />
+            ))}
+
+            {/*<RecommendCard key="weather" title={data.weather.weather} path="이미지 경로3" food="양식" onClick={recommendHandler} /> */}
         </Div>
     );
 };
