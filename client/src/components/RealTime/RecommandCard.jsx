@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 const Div = styled.div`
-    width: 33%;
+    max-width: 50%;
     background-color: yellow;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 `;
 
 const TitleDiv = styled.div`
@@ -24,7 +24,9 @@ const RecommendCard = ({ title, path, food, onClick }) => {
     return (
         <Div onClick={clickHandler}>
             <TitleDiv>{title}</TitleDiv>
-            <div style={{ height: '512px', backgroundColor: 'gray' }}>{path}</div>
+            <div style={{ height: '512px', backgroundColor: 'gray' }}>
+                <img src={`${process.env.PUBLIC_URL}/images/3-4.png`} alt="사진" />
+            </div>
             <FoodDiv>{food}</FoodDiv>
         </Div>
     );
