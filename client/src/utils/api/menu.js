@@ -1,14 +1,11 @@
 import axios from 'axios';
 class Menu {
     async getMenu(id) {
-        const res = axios
-            .get('/food/menu', {
-                params: {
-                    kindsId: id,
-                },
-            })
-            .then((res) => JSON.stringify(res))
-            .catch((err) => err);
+        const res = axios.get('/food/menu', {
+            params: {
+                kindsID: id,
+            },
+        });
         return res;
     }
 }
