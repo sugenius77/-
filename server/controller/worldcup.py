@@ -24,7 +24,7 @@ def rank():
                 rabbitMenu.world_ranking,
                 rabbitMenu.image_url
             ).all()
-        ranking_list =dict((a,[b,c]) for a,b,c in ranking_list)
+        ranking_list =dict((a,{"img_url":c,"ranking": b}) for a,b,c in ranking_list)
 
         return jsonify(ranking_list)
 
@@ -93,7 +93,8 @@ def start_rank():
             ).order_by(func.rand())\
             .limit(int(round))
 
-        ranking_list =dict((a,[b,c]) for a,b,c in ranking_list)
+        ranking_list =dict((a,{"img_url":c,
+            "ranking": b}) for a,b,c in ranking_list)
 
         return jsonify(ranking_list)
     
