@@ -4,10 +4,9 @@ import axios from "axios";
 import ModalContainer from '../../Components/Modal/ModalContainer'
 import styled, {css, keyframes} from "styled-components";
 import WorldcupPresenter from './WorldcupPresenter';
+import { useTranslation } from 'react-i18next'
 
-const name = ["짜장면","볶음밥"];
-    
-let menuArray = ['돼지국밥','떡볶이','볶음밥','스시','짜장면','탕수육','피자','햄버거'];
+let menuArray = ['dduckpoki','friedrice','gukbab','hambuger','jajangmyeon','pizza','sourpork','sushi'];
 
 const boxFade = keyframes`
   0% {opacity: 1;}
@@ -18,6 +17,8 @@ const animation = props =>
   props.on && css`
     ${boxFade} 2s 1s infinite linear alternate;
   `
+//background-image: url(/images/${props=>props.bgurl}.png);
+
 const Image = styled.div`
     background-image: url(/images/${props=>props.bgurl}.png);
     animation: ${animation};
@@ -50,18 +51,20 @@ const WorldcupContainer = () => {
         }
         menu.splice(0,2);
         SetMenu(menu.concat(temp));
-        SetOn(!on);
-        console.log(on);
+        // SetOn(!on);
+        // console.log(on);
     }
     
-    
+
     const menufunction = () => {
         const result = []
         let name = '';
         for(let i=0; i<2; i++){
             name = menu[i];
-            result.push(<div key={i}><Image on={on}
-                bgurl={name}/><Button onClick={(e)=>{arrayReset(i, e)}}>{i+1}번선택</Button></div>);
+            result.push(<div key={i}>
+                            <Image bgurl={(name)}/>
+                            <Button onClick={(e)=>{arrayReset(i, e)}}>{i+1}번선택</Button>
+                        </div>);
         }
         return result;
     };
@@ -80,11 +83,14 @@ const WorldcupContainer = () => {
     //     test();
     // }, [])
     useEffect(() => {
-        fetch("/test").then(
-          (res) => {console.log(res)}
+        // fetch("/test").then(
+        //   (res) => {console.log(res)}
+        // )
+        axios.get('worldcup/output_rank').then(
+            (res) => {console.log(res)}
         )
       }, [])
-    
+   
     return (
         <div>
             <ModalContainer/>
