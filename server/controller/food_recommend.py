@@ -107,10 +107,12 @@ def get_reommendation():
             Wname.append(weather_kindsName)
              
         weather_result = {
-        "weather": weather_name[0],
+        "value": weather_name[0],
         "image_url": [Wimg[i][0] for i in range(0,2)],
         "kinds_name": [Wname[i][0] for i in range(0,2)]
         }
+        
+        
 
     # 요일에 따른 추천
         dateID = date.today().weekday() # 요일 (월요일=0, 일요일=6)
@@ -128,7 +130,7 @@ def get_reommendation():
             Dimg.append(date_image)
             Dname.append(date_kindsName)   
         date_result = {
-        "date": date_name[0],
+        "value": date_name[0],
         "image_url": [Dimg[i][0] for i in range(0,2)],
         "kinds_name": [Dname[i][0] for i in range(0,2)]
         }
@@ -152,12 +154,12 @@ def get_reommendation():
             Timg.append(time_image)
             Tname.append(time_kindsName)   
         time_result = {
-        "time_slot": timeslot,
+        "value": timeslot,
         "image_url": [Timg[i][0] for i in range(0,2)],
         "kinds_name": [Tname[i][0] for i in range(0,2)]
         }
 
-        result = {'weather' : weather_result, 'date' : date_result, 'time':time_result}
+        result = [weather_result, date_result, time_result]
         return jsonify(result)
     except Exception as ex:
         print("error",ex)

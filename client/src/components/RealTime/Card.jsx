@@ -2,9 +2,8 @@ import RecommendCard from './RecommandCard';
 import styled from 'styled-components';
 
 const Div = styled.div`
-    width: 100%;
-    height: 100vh;
     display: flex;
+    flex-direction: column;
     margin: auto;
     bottom: 0;
     direction: row;
@@ -12,12 +11,20 @@ const Div = styled.div`
     align-items: center;
 `;
 
-const Card = ({ recommendHandler }) => {
+const Card = ({ recommendHandler, data }) => {
     return (
         <Div>
-            <RecommendCard key={'날씨'} title="맑음" path="이미지 경로1" food="치킨" onClick={recommendHandler} />
-            <RecommendCard key={'요일'} title={'월요알'} path="이미지 경로2" food="중식" onClick={recommendHandler} />
-            <RecommendCard key={'시간'} title={'시분'} path="이미지 경로3" food="양식" onClick={recommendHandler} />
+            {data.map((info) => (
+                <RecommendCard
+                    key={info?.value}
+                    title={info?.value}
+                    path={info?.image_url[0]}
+                    food={info?.kinds_name[0]}
+                    onClick={recommendHandler}
+                />
+            ))}
+
+            {/*<RecommendCard key="weather" title={data.weather.weather} path="이미지 경로3" food="양식" onClick={recommendHandler} /> */}
         </Div>
     );
 };
