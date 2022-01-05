@@ -5,6 +5,17 @@ worldcup = Blueprint('worldcup', __name__, url_prefix='/worldcup')
 status_code ={'success':200, 'bad_request':400, 'server_error':500}
 world_service = WorldcupService()
 
+'''
+    error 모음
+'''
+
+@worldcup.errorhandler(400)
+def resource_not_found(e):
+    return jsonify(error=str(e)),400
+
+@worldcup.errorhandler(500)
+def internal_server_error(e):
+    return jsonify(error=str(e)),500
 
 '''
     error 모음
