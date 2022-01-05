@@ -1,11 +1,21 @@
-from flask import Blueprint , request, jsonify
-from sqlalchemy.sql.expression import func
+from flask import Blueprint , request, jsonify,abort
 from util.WorldcupService import WorldcupService
 
 worldcup = Blueprint('worldcup', __name__, url_prefix='/worldcup')
 status_code ={'success':200, 'bad_request':400, 'server_error':500}
 world_service = WorldcupService()
 
+'''
+    error 모음
+'''
+
+@worldcup.errorhandler(400)
+def resource_not_found(e):
+    return jsonify(error=str(e)),400
+
+@worldcup.errorhandler(500)
+def internal_server_error(e):
+    return jsonify(error=str(e)),500
 
 '''
     GET 요청시
@@ -24,16 +34,24 @@ def rank():
         ranking_list = world_service.get_world_ranking_list()
         return jsonify(ranking_list)
     
-    if request.method == 'PUT':
+    elif request.method == 'PUT':
 
-        menu_id = request.get_json()['menu_id']
-        menu_id = int(menu_id)
+        try:
+            menu_id = request.get_json()['menu_id']
+            menu_id = int(menu_id)
+        except:
+            return abort(400,description="Bad Request")
 
-        world_service.put_world_rating_increase(menu_id)
-        world_service.world_ranking_sort()
+        try:
+            world_service.put_world_rating_increase(menu_id)
+            world_service.world_ranking_sort()
+        except:
+            return abort(500, descrption="Server Error")
 
-        return jsonify(status_code['success'])
+        return jsonify({"status_code" : 200, "description": "success" })
 
+    else:
+        return abort(400,description="Bad Request")
 
 '''
     GET 요청시
@@ -45,15 +63,22 @@ def rank():
 def output_rank():
     
     if not request.args:
-        return jsonify(status_code['bad_request'])
+        return abort(400,description="Bad Request")
     
     if request.method == 'GET':
-        parameter_dict = request.args.to_dict()
-        menu_id = parameter_dict['menu_id']
+        try:
+            parameter_dict = request.args.to_dict()
+            menu_id = parameter_dict['menu_id']
+            menu_id = int(menu_id)
+        except:
+            return abort(400,description="Bad Request")
+
         ranking_list = world_service.get_world_food_rank(menu_id)
 
         return jsonify(dict(ranking_list))
     
+    else:
+        return abort(400,description="Bad Request")
 
 '''
     GET 요청시
@@ -69,11 +94,16 @@ def start_rank():
         return jsonify(status_code['bad_request'])
     
     if request.method == 'GET':
-        parameter_dict = request.args.to_dict()
-        round = parameter_dict['round']
+        try:
+            parameter_dict = request.args.to_dict()
+            round = parameter_dict['round']
+            round = int(round)
+        except:
+            return abort(400,description="Bad Request")
+        
         ranking_list = world_service.get_world_startround(round)
 
         return jsonify(ranking_list)
     
     else:
-        return jsonify(status_code['bad_request'])
+        return abort(400,description="Bad Request")
