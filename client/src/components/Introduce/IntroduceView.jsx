@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 const Scene = styled.div`
     display: flex;
     background-color: #cae8f9;
@@ -35,6 +36,7 @@ const MainMessage = styled.div.attrs((props) => ({
     display: inline;
     transform: translateY(${(props) => props.translateY}%);
     color: ${(props) => props.color};
+
     @media screen and (max-width: 850px) {
         top: 50vh;
     }
@@ -42,19 +44,29 @@ const MainMessage = styled.div.attrs((props) => ({
 
 const End = styled.div`
     padding-top: 10vh;
-    width: 0.8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `;
 
-const Button = styled.button`
+const LinkDiv = styled.div`
     border: 1px solid red;
     width: 30vw;
     height: 10vh;
     font-size: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 15px;
     background-color: #dc143c;
-    color: white;
     font-weight: bold;
     round: 30;
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
 `;
 
 const IntroduceView = ({ sceneInfo, currentScene, messageOpacity, messageTranslateY }) => {
@@ -101,7 +113,9 @@ const IntroduceView = ({ sceneInfo, currentScene, messageOpacity, messageTransla
 
                 <img src={`${process.env.PUBLIC_URL}/loading/logo_512.png`} style={{ transform: 'scale(0.5)' }} alt="로고이미지" />
                 <h1>구구절절</h1>
-                <Button>추천 받으러 가기</Button>
+                <LinkDiv>
+                    <Link to="/realtime">추천 받으러 가기</Link>
+                </LinkDiv>
             </End>
         </>
     );
