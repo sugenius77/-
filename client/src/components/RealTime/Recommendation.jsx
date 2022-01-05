@@ -2,7 +2,6 @@ import Card from './Card';
 import styled from 'styled-components';
 
 const Div = styled.div`
-    margin-top: 10vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     
@@ -14,22 +13,34 @@ const Div = styled.div`
         display:flex;
         flex-direction:column;
     } 
+
+    @media screen and (max-height: 10)
 }
 `;
 
 const Recommendation = ({ recommendHandler, data }) => {
     return (
         <Div>
-            {data.map((info, idx) => (
+            {data.map((info) => (
                 <Card
-                    key={info?.value + idx}
-                    id={info?.kinds_id}
+                    key={info?.value}
                     title={info?.value}
-                    path={info?.image_url}
-                    food={info?.kinds_name}
+                    path={info?.image_url[0]}
+                    food={info?.kinds_name[0]}
                     onClick={recommendHandler}
                 />
             ))}
+            {data.map((info) => (
+                <Card
+                    key={info?.value}
+                    title={info?.value}
+                    path={info?.image_url[1]}
+                    food={info?.kinds_name[1]}
+                    onClick={recommendHandler}
+                />
+            ))}
+
+            {/*<RecommendCard key="weather" title={data.weather.weather} path="이미지 경로3" food="양식" onClick={recommendHandler} /> */}
         </Div>
     );
 };
