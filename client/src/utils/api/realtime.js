@@ -1,7 +1,7 @@
 import axios from 'axios';
 class RealTime {
     async getRealTime(nx, ny) {
-        const res = axios.get('/food/recommendation', {
+        const res = axios.get('http://localhost:5000/food/recommendation', {
             params: {
                 nx: nx,
                 ny: ny,

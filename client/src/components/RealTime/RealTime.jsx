@@ -39,18 +39,19 @@ const RealTime = () => {
         let nx = parseInt(currentLocation.latitude);
         let ny = parseInt(currentLocation.longitude);
         const res = await api.realtime.getRealTime(nx, ny);
-        console.log(res);
-        setData(() => {
-            const newData = [...res.data];
-            return newData;
-        });
-        setTimeout(() => {
-            setLoadingPercent((cur) => cur + 25);
-        }, 2000);
-        setTimeout(() => {
-            setLoadingPercent((cur) => cur + 25);
-        }, 3000);
-        //eslint-disable-next-line
+        if (res !== 'error') {
+            setData(() => {
+                const newData = [...res.data];
+                return newData;
+            });
+            setTimeout(() => {
+                setLoadingPercent((cur) => cur + 25);
+            }, 2000);
+            setTimeout(() => {
+                setLoadingPercent((cur) => cur + 25);
+            }, 3000);
+            //eslint-disable-next-line
+        }
     }, [currentLocation]);
 
     useEffect(() => {
