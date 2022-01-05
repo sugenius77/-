@@ -56,9 +56,11 @@ const LinkDiv = styled.div`
     width: 30vw;
     height: 10vh;
     font-size: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 15px;
     background-color: #dc143c;
-    color: white;
     font-weight: bold;
     round: 30;
 
