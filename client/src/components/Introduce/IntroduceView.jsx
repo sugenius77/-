@@ -45,7 +45,10 @@ const MainMessage = styled.div.attrs((props) => ({
 
 const End = styled.div`
     padding-top: 10vh;
-    width: 0.8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `;
 
 const LinkDiv = styled.div`
@@ -53,9 +56,11 @@ const LinkDiv = styled.div`
     width: 30vw;
     height: 10vh;
     font-size: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 15px;
     background-color: #dc143c;
-    color: white;
     font-weight: bold;
     round: 30;
 
