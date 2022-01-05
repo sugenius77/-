@@ -2,7 +2,6 @@ import Card from './Card';
 import styled from 'styled-components';
 
 const Div = styled.div`
-    margin-top: 10vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     
@@ -38,6 +37,8 @@ const Recommendation = ({ recommendHandler, data }) => {
                     onClick={recommendHandler}
                 />
             ))}
+
+            {/*<RecommendCard key="weather" title={data.weather.weather} path="이미지 경로3" food="양식" onClick={recommendHandler} /> */}
         </Div>
     );
 };

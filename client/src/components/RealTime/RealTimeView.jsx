@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Card from './Card';
 import Loading from '../Loading';
 import Recommendation from './Recommendation';
 
@@ -13,7 +12,7 @@ export const RealTimeView = ({ loading, loadingPercent, recommendHandler, data }
     return (
         <Div>
             {!loading && <Loading loadingPercent={loadingPercent} />}
-            {loading && <Card recommendHandler={recommendHandler} data={data} />}
+            {loading && <Recommendation recommendHandler={recommendHandler} data={data} />}
         </Div>
     );
 };
