@@ -6,38 +6,39 @@ import api from '../../utils/api/api';
 const Div = styled.div`
     padding-top: 10vh;
     display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-grap: 1em;
     place-items: center;
     justify-content: center;
     min-height: 100vh;
     grid-auto-columns: minmax(100px, auto);
     grid-gap: 0.5rem;
     background-color: #cae8f9;
-
-    @media screen and (min-width: 10em) {
-        grid-template-columns: repeat(3, 1fr);
-        grid-grap: 1em;
-    }
-
-    @media screen and (min-width: 680) {
+    @media screen and (max-width: 680px) {
         display: flex;
-        flex-direction: columns;
+        flex-direction: column;
     }
 `;
 
 const ItemWrap = styled.div`
     .ItemWrap {
+        width: 20vw;
         display: flex;
         flex-direction: column;
         background-color: #ffffff;
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
         border-radius: 6px;
         margin: 0 1vw;
+        @media screen and (max-width: 680px) {
+            width: 100%;
+            margin: 0;
+        }
     }
 
     .ItemWrap-Top {
         display: flex;
-        width: 100%;
 
+        height: 35vh;
         border-top-left-radius: 6px;
         border-top-right-radius: 6px;
         background-color: #e2e5e7;
@@ -46,10 +47,10 @@ const ItemWrap = styled.div`
         justify-content: center;
         text-align: center;
         align-items: center;
-
+        overflow: hidden;
         img {
-            height: 25vh;
-            width: 300px;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
         }
     }
@@ -65,24 +66,24 @@ const ItemWrap = styled.div`
     }
 
     .ItemWrap-Body-Title {
-        width: 100%;
         border-radius: 4px;
         display: flex;
         align-items: center;
         justify-content: center;
+        font-size: calc(1vw + 1vh + 1vmin);
     }
 
     .ItemWrap-Rating {
         padding: 10px 12px;
         font-weight: bold;
-        font-size: 2em;
+        font-size: 2rem;
         display: flex;
         justify-content: right;
         align-items: center;
 
         img {
-            height: 3em;
-            object-fit: scale-down;
+            max-width: 3rem;
+            min-width: calc(1vw+1vh+1vmin);
         }
     }
 `;

@@ -25,9 +25,10 @@ const Scene = styled.div`
 const MainMessage = styled.div.attrs((props) => ({
     style: {
         opacity: props.opacity,
+        transform: 'translateY(' + props.translateY + '%)',
     },
 }))`
-    top: 35vh;
+    top: 50vh;
     display: inline;
     position: fixed;
     width: 100%;
@@ -35,7 +36,7 @@ const MainMessage = styled.div.attrs((props) => ({
     font-weight: bold;
     line-height: 1.2;
     display: inline;
-    transform: translateY(${(props) => props.translateY}%);
+
     color: ${(props) => props.color};
 
     @media screen and (max-width: 850px) {
