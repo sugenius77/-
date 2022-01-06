@@ -90,7 +90,7 @@ def weather_id(data):
 
 
 # 날씨에 따른 추천 업종
-def weather_recommendation(nx,ny,rank):
+def weather_recommendation(nx,ny):
     # openAPI 이용해서 날씨ID 가져오기
     openAPI_res = request_weather_openAPI(nx,ny)
     items = openAPI_res.json().get('response').get('body').get('items')
@@ -141,7 +141,7 @@ def weather_recommendation(nx,ny,rank):
     return weather_result
         
 # 요일에 따른 추천 업종
-def date_recommendation(rank):
+def date_recommendation():
         dateID = date.today().weekday() # 요일 (월요일=0, 일요일=6)
         date_name = db.session\
                     .query(rabbitDate.date_name)\
@@ -182,7 +182,7 @@ def date_recommendation(rank):
 
 
 # 시간에 따른 추천 업종
-def time_recommendation(rank):
+def time_recommendation():
         timeslot = (str(time.localtime().tm_hour))   
         time_id = db.session\
                     .query(rabbitTime.id)\
@@ -226,10 +226,9 @@ def time_recommendation(rank):
 def get_recommendation(): 
     nx = request.args.get("nx")
     ny = request.args.get("ny")
-    rank = request.args.get("rank")
-    weather_result = weather_recommendation(nx,ny,rank)
-    date_result = date_recommendation(rank)
-    time_result = time_recommendation(rank)
+    weather_result = weather_recommendation(nx,ny)
+    date_result = date_recommendation()
+    time_result = time_recommendation()
     result = [weather_result, date_result, time_result]
     return jsonify(result)
 
