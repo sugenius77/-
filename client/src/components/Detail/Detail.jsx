@@ -2,18 +2,27 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 import api from '../../utils/api/api';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const Div = styled.div`
-    padding-top: 10vh;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-grap: 1em;
-    place-items: center;
-    justify-content: center;
     min-height: 100vh;
-    grid-auto-columns: minmax(100px, auto);
-    grid-gap: 0.5rem;
     background-color: #cae8f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .title {
+        margin: 10vh;
+        width: 50vw;
+        height: 25vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3vw;
+        background-color: #fec478;
+    }
     @media screen and (max-width: 680px) {
         display: flex;
         flex-direction: column;
@@ -22,13 +31,9 @@ const Div = styled.div`
 
 const ItemWrap = styled.div`
     .ItemWrap {
-        width: 20vw;
-        display: flex;
-        flex-direction: column;
+        width: 100%;
         background-color: #ffffff;
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-        border-radius: 6px;
-        margin: 0 1vw;
+        border: 1px solid #888;
         @media screen and (max-width: 680px) {
             width: 100%;
             margin: 0;
@@ -37,10 +42,7 @@ const ItemWrap = styled.div`
 
     .ItemWrap-Top {
         display: flex;
-
         height: 35vh;
-        border-top-left-radius: 6px;
-        border-top-right-radius: 6px;
         background-color: #e2e5e7;
         color: #566270;
         font-size: 2.25rem;
@@ -65,7 +67,7 @@ const ItemWrap = styled.div`
         align-items: start;
     }
 
-    .ItemWrap-Body-Title {
+    .ItemWrap-Body-Left {
         border-radius: 4px;
         display: flex;
         align-items: center;
@@ -74,7 +76,7 @@ const ItemWrap = styled.div`
     }
 
     .ItemWrap-Rating {
-        padding: 10px 12px;
+        padding: 1vh 1vw;
         font-weight: bold;
         font-size: 2rem;
         display: flex;
@@ -103,35 +105,65 @@ const Item = ({ imgSrc, menuName, rating }) => {
         <ItemWrap>
             <div className="ItemWrap">
                 <div className="ItemWrap-Top ">
-                    <img src={`${process.env.PUBLIC_URL}${imgSrc}`} alt={`'메뉴이미지'`} />
+                    <img src={`${process.env.PUBLIC_URL}/${imgSrc}`} alt={`'메뉴이미지'`} />
                 </div>
                 <div className="ItemWrap-Rating">
-                    <div className="ItemWrap-Body-Title ">{menuName}</div>
-                    <button onClick={plusHandler}>
-                        <img src={`${process.env.PUBLIC_URL}/${toggle ? 'heart_on.png' : 'heart_off.png'}`} alt="좋아요" />
-                    </button>
-                    {number}
+                    <div className="ItemWrap-Body-Left ">{menuName}</div>
+                    <div className="ItemWrap-Body-Right">
+                        <button onClick={plusHandler}>
+                            <img src={`${process.env.PUBLIC_URL}/${toggle ? 'heart_on.png' : 'heart_off.png'}`} alt="좋아요" />
+                        </button>
+                    </div>
+                    <h3>{number}</h3>
                 </div>
             </div>
         </ItemWrap>
     );
 };
 
+const Container = styled.div`
+    overflow: hidden;
+    background-color: #cae8f9;
+    width: 100%;
+
+    .slick-prev {
+        left: 3% !important;
+        z-index: 1;
+    }
+    .slick-next {
+        right: 3% !important;
+        z-index: 1;
+    }
+`;
+
 const Detail = () => {
     const { id } = useParams();
     const [menuData, setMenu] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [innerWidth, setInnerWidth] = useState(window.innerWidth);
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: innerWidth / 480,
+        slidesToScroll: 1,
+        autoplay: true,
+        centerMode: true,
+    };
+
+    const getInnerWidth = () => {
+        setInnerWidth(window.innerWidth);
+    };
+    useEffect(() => {
+        window.addEventListener('resize', getInnerWidth);
+        return () => window.removeEventListener('resize', getInnerWidth);
+    }, []);
 
     const getRealTime = useCallback(async () => {
         const res = await api.menu.getMenu(id);
         console.log(res);
-        setMenu((cur) => {
-            const newMenu = [];
-            newMenu.push({ menu_name: 'BBQ', image_url: '/images/1-1.png', toggle_rating: 14 });
-            newMenu.push({ menu_name: 'BHC', image_url: '/images/1-2.png', toggle_rating: 13 });
-            newMenu.push({ menu_name: '치킨플러스', image_url: '/images/1-3.png', toggle_rating: 14 });
-            newMenu.push({ menu_name: 'BBQ', image_url: '/images/1-4.png', toggle_rating: 14 });
-            newMenu.push({ menu_name: 'BHC', image_url: '/images/1-5.png', toggle_rating: 13 });
-            newMenu.push({ menu_name: '치킨플러스', image_url: '/images/1-6.png', toggle_rating: 14 });
+        setMenu(() => {
+            const newMenu = [...res.data];
             return newMenu;
         });
         //eslint-disable-next-line
@@ -143,10 +175,21 @@ const Detail = () => {
 
     return (
         <Div>
-            {menuData.map((menu, idx) => {
-                return <Item key={idx} imgSrc={menu.image_url} menuName={menu.menu_name} rating={menu.toggle_rating} />;
-            })}
-            {/* <ScrollView ref={ref}>Element {inView.toString()}</ScrollView> */}
+            <div className="title">
+                <h1>추천 메뉴 입니다</h1>
+            </div>
+            <Container>
+                <Slider {...settings}>
+                    {menuData.map((menu, idx) => {
+                        return (
+                            <div>
+                                <Item key={idx} imgSrc={menu.image_url} menuName={menu.menu_name} rating={menu.toggle_rating} />
+                            </div>
+                        );
+                    })}
+                </Slider>
+                {/* <ScrollView ref={ref}>Element {inView.toString()}</ScrollView> */}
+            </Container>
         </Div>
     );
 };
