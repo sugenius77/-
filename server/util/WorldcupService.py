@@ -45,9 +45,12 @@ class WorldcupService:
                 rabbitMenu.image_url
             ).all()
         
-        ranking_list = dict(
-                (menu_name, { "ranking" : world_ranking, "img_url" : image_url}
-            ) for menu_name, world_ranking, image_url in ranking_list)
+        ranking_list = [(menu_name, world_ranking, image_url) for menu_name, world_ranking, image_url in ranking_list]
+        
+
+        # ranking_list = dict(
+        #         (menu_name, { "ranking" : world_ranking, "img_url" : image_url}
+        #     ) for menu_name, world_ranking, image_url in ranking_list)
         # { menu_name : { "ranking" : world_ranking, "img_url" : image_url }
 
         return ranking_list
