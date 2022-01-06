@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 const Div = styled.div`
-    padding: 10%;
+    width: 100vw;
+    height: 100vh;
     position: relative;
     img {
         top: 50%;

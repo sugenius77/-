@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 const Scene = styled.div`
     display: flex;
     background-color: #cae8f9;
+    margin-top: 10vh;
     flex-direction: column;
     height: ${(props) => props.scrollHeight}px;
     h1 {

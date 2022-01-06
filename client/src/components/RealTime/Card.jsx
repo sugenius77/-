@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 
 const Div = styled.div`
-    background-color: yellow;
     display: flex;
-    margin: 8px;
     flex-direction: column;
 `;
 
@@ -48,13 +46,21 @@ const Card = ({ title, path, food, onClick }) => {
 
 const ImgDiv = styled.div`
     background-color: gray;
+    overflow: hidden;
     img {
+        width: 100%;
+        height: 100%;
         object-fit: cover;
     }
 `;
 
 const FoodDiv = styled.div`
-    font-size: 32px;
+    font-size: 2rem;
+    height: 5vh;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #cae8f9;
 `;
 const Card = ({ title, path, food, onClick }) => {
@@ -66,7 +72,7 @@ const Card = ({ title, path, food, onClick }) => {
         <Div onClick={clickHandler}>
             <TitleDiv>{title}</TitleDiv>
             <ImgDiv>
-                <img src={`${process.env.PUBLIC_URL}/images/3-4.png`} alt="사진" />
+                <img src={`${process.env.PUBLIC_URL}/${path}`} alt="사진" />
             </ImgDiv>
             <FoodDiv>{food}</FoodDiv>
         </Div>
