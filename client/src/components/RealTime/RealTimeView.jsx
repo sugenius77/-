@@ -3,7 +3,6 @@ import Loading from '../Loading';
 import Recommendation from './Recommendation';
 
 const Div = styled.div`
-    margin-top: 15vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,7 +11,7 @@ export const RealTimeView = ({ loading, loadingPercent, recommendHandler, data }
     return (
         <Div>
             {!loading && <Loading loadingPercent={loadingPercent} />}
-            {loading && <Recommendation recommendHandler={recommendHandler} data={data} />}
+            {loading && data.length > 2 && <Recommendation recommendHandler={recommendHandler} data={data} />}
         </Div>
     );
 };

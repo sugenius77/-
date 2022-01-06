@@ -109,7 +109,7 @@ def get_reommendation():
         weather_result = {
         "value": weather_name[0],
         "image_url": [Wimg[i][0] for i in range(0,2)],
-        "kinds_name": [Wname[i][0] for i in range(0,2)]
+        "kinds_name": [Wname[i][0] for i in range(0,2)],
         }
         
         
@@ -132,7 +132,7 @@ def get_reommendation():
         date_result = {
         "value": date_name[0],
         "image_url": [Dimg[i][0] for i in range(0,2)],
-        "kinds_name": [Dname[i][0] for i in range(0,2)]
+        "kinds_name": [Dname[i][0] for i in range(0,2)],
         }
         
     #시간에 따른 추천
@@ -156,7 +156,7 @@ def get_reommendation():
         time_result = {
         "value": timeslot,
         "image_url": [Timg[i][0] for i in range(0,2)],
-        "kinds_name": [Tname[i][0] for i in range(0,2)]
+        "kinds_name": [Tname[i][0] for i in range(0,2)],
         }
 
         result = [weather_result, date_result, time_result]
