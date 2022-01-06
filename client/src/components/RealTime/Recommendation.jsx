@@ -23,18 +23,10 @@ const Recommendation = ({ recommendHandler, data }) => {
             {data.map((info) => (
                 <Card
                     key={info?.value}
+                    id={info?.kinds_id}
                     title={info?.value}
-                    path={info?.image_url[0]}
-                    food={info?.kinds_name[0]}
-                    onClick={recommendHandler}
-                />
-            ))}
-            {data.map((info) => (
-                <Card
-                    key={info?.value}
-                    title={info?.value}
-                    path={info?.image_url[1]}
-                    food={info?.kinds_name[1]}
+                    path={info?.image_url}
+                    food={info?.kinds_name}
                     onClick={recommendHandler}
                 />
             ))}
