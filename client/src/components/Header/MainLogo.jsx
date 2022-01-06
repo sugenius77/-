@@ -5,7 +5,6 @@ const Div = styled.div`
     font-size: 32px;
     display: flex;
     align-items: center;
-
     img {
         margin-right: 12px;
     }
