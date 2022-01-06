@@ -1,11 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Slide from "./Slide";
 import styled from "styled-components";
- 
-// import img1 from '../images/food_images/1.png';
-// import img2 from '../images/food_images/2.png';
-// import img3 from '../images/food_images/3.png';
-
 
 const Container = styled.div`
     paddingTop:'200px',
@@ -39,7 +34,8 @@ function RandomContainer(props) {
   const nextSlide = () => {
     if (currentSlide >= TOTAL_SLIDES) { 
       console.log('ere')
-      setCurrentSlide(0);
+      setCurrentSlide(1);
+      slideRef.current.style.transform = `translateX(-${"0"}00%)`
     } else {
       setCurrentSlide(currentSlide + 1);
       console.log('hhhhhhh')
@@ -47,48 +43,54 @@ function RandomContainer(props) {
   };
   const prevSlide = () => {
     setStop(true);
-    if (currentSlide === 0) {
-      setCurrentSlide(TOTAL_SLIDES);
-    } else {
-      setCurrentSlide(currentSlide - 1);
-    }
+    slideRef.current.style.transition = '';
+    slideRef.current.style.transform = '';
+    // if (currentSlide === 0) {
+    //   setCurrentSlide(TOTAL_SLIDES);
+    // } else {
+    //   setCurrentSlide(currentSlide - 1);
+    // }
   };
+  
   useEffect(() => {
-    
-    if(stop){
-        slideRef.current.style.transition = '';
-        slideRef.current.style.transform = '';
-    }else{
-        slideRef.current.style.transition = "all ease 0.1s 0s";
-        slideRef.current.style.transform = `translateX(-${currentSlide}00%)`; // 백틱을 사용하여 슬라이드로 이동하는 애니메이션을 만듭니다.
-    }
-   
-    
-    nextSlide();
-    
+    const timerId = setTimeout(() => {
+      if(stop){
+          slideRef.current.style.transition = '';
+          slideRef.current.style.transform = '';
+      }else{
+          slideRef.current.style.transition = "all ease 0.05s 0s";
+          slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
+          nextSlide();
+      }
+      
+    }, 50);
 },[currentSlide] ,[stop]);
 return (
-    <Container>
-      {/* {currentSlide} */}
-      <SliderContainer ref={slideRef}>
-        <Slide img={"/images/1-1.png"} />
-        <Slide img={"/images/2-1.png"} />
-        <Slide img={"/images/3-1.png"} />
-        <Slide img={"/images/4-1.png"} />
-        <Slide img={"/images/4-2.png"} />
-        <Slide img={"/images/5-1.png"} />
-        
-        <Slide img={"/images/1-2.png"} />
-        <Slide img={"/images/2-2.png"} />
-        <Slide img={"/images/3-2.png"} />
-        <Slide img={"/images/4-2.png"} />
-        <Slide img={"/images/4-2.png"} />
-        <Slide img={"/images/5-2.png"} />
-      </SliderContainer>
-      <div style={{display:'flex', justifyContent:'center', marginTop:'100px'}}>
-        <Button onClick={prevSlide}>정지버튼</Button>
+    <div style={{display:'flex', justifyContent:'center', marginTop:'200px'}}>
+      <div style={{width:'600px'}}>
+        <Container>
+          {/* {currentSlide} */}
+          <SliderContainer ref={slideRef}>
+            <Slide img={"/images/1-1.png"} />
+            <Slide img={"/images/2-1.png"} />
+            <Slide img={"/images/3-1.png"} />
+            <Slide img={"/images/4-1.png"} />
+            <Slide img={"/images/4-2.png"} />
+            <Slide img={"/images/5-1.png"} />
+      
+            <Slide img={"/images/1-2.png"} />
+            <Slide img={"/images/2-2.png"} />
+            <Slide img={"/images/3-2.png"} />
+            <Slide img={"/images/4-2.png"} />
+            <Slide img={"/images/4-2.png"} />
+            <Slide img={"/images/5-2.png"} />
+          </SliderContainer>
+          <div style={{display:'flex', justifyContent:'center', marginTop:'100px'}}>
+            <Button onClick={prevSlide}>정지버튼</Button>
+          </div>
+        </Container>
       </div>
-    </Container>
+    </div>
   );
 }
 export default RandomContainer;
