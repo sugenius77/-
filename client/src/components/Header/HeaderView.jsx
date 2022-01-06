@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const Div = styled.div`
     z-index: 1;
-    height: 10vh;
+    min-height: 10vh;
     position: fixed;
     margin-top: -1px;
     padding-top: 1px;
@@ -27,7 +27,7 @@ const Div = styled.div`
 
 const HeaderView = ({ toggle, innerWidth, toggleHandler }) => {
     return (
-        <Div>
+        <Div innerWidth={toggle}>
             <MainLogo innerWidth={innerWidth} toggleHandler={toggleHandler} />
             {innerWidth > 1040 && <MenuLink />}
             {innerWidth <= 1040 && toggle && <MenuLink />}
