@@ -2,8 +2,7 @@ import styled from 'styled-components';
 const Div = styled.div`
     position: absolute;
     display: none;
-    right: 12px;
-    padding: 8px 12px;
+    right: 1em;
     font-size: 24px;
     font-size: 32px;
     @media screen and (max-width: 1040px) {

@@ -17,6 +17,11 @@ const Div = styled.div`
         grid-template-columns: repeat(3, 1fr);
         grid-grap: 1em;
     }
+
+    @media screen and (min-width: 680) {
+        display: flex;
+        flex-direction: columns;
+    }
 `;
 
 const ItemWrap = styled.div`
