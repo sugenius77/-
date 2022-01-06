@@ -99,31 +99,43 @@ def weather_recommendation(nx,ny,rank):
                     .query(rabbitWeather.weather_name)\
                     .filter(rabbitWeather.id == weatherID)\
                     .first()
-    weather_kindsId = db.session\
-                    .query(rabbitWeatherRanking.kinds_id)\
-                    .filter((rabbitWeatherRanking.weather_id == weatherID) & (rabbitWeatherRanking.weather_rank == rank))\
-                    .first()
- 
-    # 0부터 조건에 맞는 이미지의 총 갯수 범위에서 하나의 숫자를 뽑는다
+                                        
+    weather_all = rabbitWeatherRanking.query\
+                .filter(rabbitWeatherRanking.weather_id == weatherID)\
+                .all()
+                
+    # 가중치를 적용해서 추천 업종 선택
+    weather_list = []
+    weight = 12
+    for i in range(0,12):
+        kinds_id = weather_all[i].kinds_id
+        weighted_id = [kinds_id] * weight
+        weather_list.extend(weighted_id)
+        weight -= 1
+        
+    # 랜덤으로 뽑기
+    selected_id = random.choice(weather_list)
+    
+    # 0부터 조건에 맞는 이미지의 총 갯수 범위에서 하나의 숫자를 뽑음
     # 해당 인덱스 이미지 뽑기
     random_num = random.randrange(0, db.session
                                         .query(rabbitMenu.image_url)
-                                        .filter(rabbitMenu.kinds_id == weather_kindsId[0])
+                                        .filter(rabbitMenu.kinds_id == selected_id)
                                         .count()) 
     weather_image = db.session\
                     .query(rabbitMenu.image_url)\
-                    .filter(rabbitMenu.kinds_id == weather_kindsId[0])\
+                    .filter(rabbitMenu.kinds_id == selected_id)\
                     [random_num]
     weather_kindsName = db.session\
-                .query(rabbitKinds.kinds_name)\
-                .filter(rabbitKinds.id == weather_kindsId[0])\
-                .first()
+                    .query(rabbitKinds.kinds_name)\
+                    .filter(rabbitKinds.id == selected_id)\
+                    .first()
         
     weather_result = {
     "value": weather_name[0],
     "image_url": weather_image[0],
     "kinds_name": weather_kindsName[0],
-    "kinds_id": weather_kindsId[0]
+    "kinds_id": selected_id
     }
 
     return weather_result
@@ -133,28 +145,36 @@ def date_recommendation(rank):
         dateID = date.today().weekday() # 요일 (월요일=0, 일요일=6)
         date_name = db.session\
                     .query(rabbitDate.date_name)\
-                    .filter(rabbitDate.id == (dateID+1)).first()
-        date_kindsId = db.session\
-                    .query(rabbitDateRanking.kinds_id)\
-                    .filter((rabbitDateRanking.date_id == (dateID+1)) & (rabbitDateRanking.date_rank == rank))\
-                    .first()
+                    .filter(rabbitDate.id == (dateID+1)).first()            
+        date_all = rabbitDateRanking.query\
+                .filter(rabbitDateRanking.date_id == (dateID+1))\
+                .all()
+        date_list = []
+        weight = 12
+        for i in range(0,12):
+            kinds_id = date_all[i].kinds_id
+            weighted_id = [kinds_id] * weight
+            date_list.extend(weighted_id)
+            weight -= 1
+        selected_id = random.choice(date_list)
+        
         random_num = random.randrange(0, db.session
                                         .query(rabbitMenu.image_url)
-                                        .filter(rabbitMenu.kinds_id == date_kindsId[0])
+                                        .filter(rabbitMenu.kinds_id == selected_id)
                                         .count()) 
         date_image = db.session\
                     .query(rabbitMenu.image_url)\
-                    .filter(rabbitMenu.kinds_id == date_kindsId[0])\
+                    .filter(rabbitMenu.kinds_id == selected_id)\
                     [random_num]
         date_kindsName = db.session\
                     .query(rabbitKinds.kinds_name)\
-                    .filter(rabbitKinds.id == date_kindsId[0])\
+                    .filter(rabbitKinds.id == selected_id)\
                     .first()
         date_result = {
         "value": date_name[0],
         "image_url": date_image[0],
         "kinds_name": date_kindsName[0],
-        "kinds_id": date_kindsId[0]
+        "kinds_id": selected_id
         }
         
         
@@ -164,32 +184,40 @@ def date_recommendation(rank):
 # 시간에 따른 추천 업종
 def time_recommendation(rank):
         timeslot = (str(time.localtime().tm_hour))   
-        time_Id = db.session\
+        time_id = db.session\
                     .query(rabbitTime.id)\
                     .filter(rabbitTime.time_slot == timeslot)\
                     .first()
-        time_kindsId = db.session\
-                    .query(rabbitTimeRanking.kinds_id)\
-                    .filter((rabbitTimeRanking.time_id == time_Id[0]) & (rabbitTimeRanking.time_rank == rank))\
-                    .first()
+        time_all = rabbitTimeRanking.query\
+                .filter(rabbitTimeRanking.time_id == time_id[0])\
+                .all()
+        time_list = []
+        weight = 12
+        for i in range(0,12):
+            kinds_id = time_all[i].kinds_id
+            weighted_id = [kinds_id] * weight
+            time_list.extend(weighted_id)
+            weight -= 1
+        selected_id = random.choice(time_list)
+
         random_num = random.randrange(0, db.session
                                         .query(rabbitMenu.image_url)
-                                        .filter(rabbitMenu.kinds_id == time_kindsId[0])
+                                        .filter(rabbitMenu.kinds_id == selected_id)
                                         .count()) 
         time_image = db.session\
                     .query(rabbitMenu.image_url)\
-                    .filter(rabbitMenu.kinds_id == time_kindsId[0])\
+                    .filter(rabbitMenu.kinds_id == selected_id)\
                     [random_num]
         time_kindsName = db.session\
                     .query(rabbitKinds.kinds_name)\
-                    .filter(rabbitKinds.id == time_kindsId[0])\
+                    .filter(rabbitKinds.id == selected_id)\
                     .first()
   
         time_result = {
         "value": f"{time.localtime().tm_hour}시 {time.localtime().tm_min}분",
         "image_url": time_image[0],
         "kinds_name": time_kindsName[0],
-        "kinds_id": time_kindsId[0]
+        "kinds_id": selected_id
         }
         return time_result
 
@@ -210,18 +238,17 @@ def get_recommendation():
 @food.route('/menu',methods=['GET'])
 def post_menu():
     kindsID = request.args.get("kindsID")
-    limit_num = 12
     list = rabbitMenu.query\
             .filter(rabbitMenu.kinds_id == kindsID)\
-            .limit(limit_num)\
             .with_entities(
+                rabbitMenu.id,
                 rabbitMenu.menu_name,
                 rabbitMenu.image_url,
                 rabbitMenu.toggle_rating
             ).all()
     result =[]
     for item in list:
-        result.append(dict({"menu_name":item[0],"image_url":item[1],"toggle_rating" :item[2]}))
+        result.append(dict({"menu_id":item[0],"menu_name":item[1],"image_url" :item[2],"toggle_rating": item[3]}))
     return jsonify(result)
    
 
