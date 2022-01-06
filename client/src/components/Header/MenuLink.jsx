@@ -7,6 +7,7 @@ const Div = styled.div`
     justify-content: space-between;
     align-items: center;
     margin: auto;
+    background-color: white;
 
     a {
         justify-content: space-between;
@@ -23,10 +24,10 @@ const Div = styled.div`
         align-items: center;
         text-align: center;
         width: 100%;
-
         a {
             width: 100%;
             margin-top: 4px;
+            height: auto;
         }
     }
 `;
