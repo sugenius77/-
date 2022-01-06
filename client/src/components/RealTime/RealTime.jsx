@@ -16,7 +16,7 @@ const geolocationOptions = {
 const RealTime = () => {
     const [loadingPercent, setLoadingPercent] = useState(0);
     const { location: currentLocation, error: currentError } = useCurrentLocation(geolocationOptions);
-    const [data, setData] = useState([{ image_url: '', kinds_name: '0', value: '맑음' }]);
+    const [data, setData] = useState([]);
     const history = useHistory();
     const loading = useMemo(() => (loadingPercent >= 125 ? true : false), [loadingPercent]);
 
@@ -31,7 +31,6 @@ const RealTime = () => {
         }, 1000);
         return () => {
             setLoadingPercent(0);
-            setData([]);
         };
     }, []);
 
@@ -47,11 +46,15 @@ const RealTime = () => {
             });
             setTimeout(() => {
                 setLoadingPercent((cur) => cur + 25);
-            }, 2000);
-            setTimeout(() => {
                 setLoadingPercent((cur) => cur + 25);
-            }, 3000);
+            }, 2000);
             //eslint-disable-next-line
+        } else {
+            setData((cur) => {
+                const newData = [[...cur]];
+                newData.push([...cur]);
+                return newData;
+            });
         }
     }, [currentLocation]);
 
