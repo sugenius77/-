@@ -1,4 +1,5 @@
-from models.rabbitMenu import rabbitMenu, db
+from app import db
+from ..models.rabbitMenu import rabbitMenu
 from sqlalchemy.sql.expression import func
 
 class WorldcupService:

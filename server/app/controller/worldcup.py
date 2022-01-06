@@ -1,5 +1,5 @@
 from flask import Blueprint , request, jsonify,abort
-from util.WorldcupService import WorldcupService
+from ..util.WorldcupService import WorldcupService
 
 worldcup = Blueprint('worldcup', __name__, url_prefix='/worldcup')
 status_code ={'success':200, 'bad_request':400, 'server_error':500}
