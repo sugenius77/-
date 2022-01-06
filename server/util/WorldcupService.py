@@ -75,14 +75,14 @@ class WorldcupService:
         ranking_list = rabbitMenu.query\
             .with_entities(
                 rabbitMenu.menu_name,
-                rabbitMenu.world_ranking,
+                rabbitMenu.id,
                 rabbitMenu.image_url
             ).order_by(func.rand())\
             .limit(int(round))
 
         ranking_list = dict(
-                (menu_name, { "ranking" : world_ranking, "img_url" : image_url}
-            ) for menu_name, world_ranking, image_url in ranking_list)
-        # { menu_name : { "ranking" : world_ranking, "img_url" : image_url }
+                (menu_name, { "menu_id" : menu_id, "img_url" : image_url}
+            ) for menu_name, menu_id, image_url in ranking_list)
+        # { menu_name : { "menu_id" : menu_id, "img_url" : image_url }
 
         return ranking_list
