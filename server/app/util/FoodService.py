@@ -13,7 +13,7 @@ import time  # time 모듈 임포트
 from datetime import date, datetime, timedelta
 
 class FoodService:
-    def request_weather_openAPI(nx,ny):
+    def request_weather_openAPI(self,nx,ny):
         try:
             url = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?"
             service_key = "y0g%2Fa5rg15oSMXYYVZyErtu%2BUVmJSyn4JXkrl8FM6VKKxwCfvIjopgp1KQMhGJyt7EHFQ6OZv99R%2ByxDNht15Q%3D%3D"
@@ -60,7 +60,7 @@ class FoodService:
             return {"msg":"api error"}
 
     # 날씨id 값 
-    def weather_id(data):
+    def weather_id(self,data):
         weather_data = dict()
         for item in data['item']:
             # 기상상태
@@ -86,7 +86,7 @@ class FoodService:
 
 
     # 날씨에 따른 추천 업종
-    def weather_recommendation(nx,ny,rank):
+    def weather_recommendation(self,nx,ny,rank):
         # openAPI 이용해서 날씨ID 가져오기
         openAPI_res = FoodService.request_weather_openAPI(nx,ny)
         items = openAPI_res.json().get('response').get('body').get('items')
@@ -125,7 +125,7 @@ class FoodService:
         return weather_result
             
     # 요일에 따른 추천 업종
-    def date_recommendation(rank):
+    def date_recommendation(self,rank):
             dateID = date.today().weekday() # 요일 (월요일=0, 일요일=6)
             date_name = db.session\
                         .query(rabbitDate.date_name)\
@@ -158,7 +158,7 @@ class FoodService:
 
 
     # 시간에 따른 추천 업종
-    def time_recommendation(rank):
+    def time_recommendation(self,rank):
             timeslot = (str(time.localtime().tm_hour))   
             time_Id = db.session\
                         .query(rabbitTime.id)\
@@ -189,7 +189,7 @@ class FoodService:
             }
             return time_result
     
-    def menu_post(kindsID):
+    def menu_post(self,kindsID):
         limit_num = 12
         list = rabbitMenu.query\
                 .filter(rabbitMenu.kinds_id == kindsID)\
@@ -205,19 +205,19 @@ class FoodService:
 
         return result
 
-    def add_like(data):
+    def add_like(self,data):
         like = rabbitMenu.query\
             .filter(rabbitMenu.id== data["menu_id"]).first()
         like.toggle_rating += 1
         db.session.commit()
     
-    def sub_like(data):
+    def sub_like(self,data):
         like = rabbitMenu.query\
                 .filter(rabbitMenu.id== data["menu_id"]).first()
         like.toggle_rating -= 1
         db.session.commit()
 
-    def toggle_get(menuID):
+    def toggle_get(self,menuID):
         like = rabbitMenu.query\
         .filter(rabbitMenu.id== menuID).first()
 
