@@ -18,6 +18,11 @@ const Div = styled.div`
         display: flex;
         flex-direction: column;
     }
+
+    @media screen and (min-width: 680) {
+        display: flex;
+        flex-direction: columns;
+    }
 `;
 
 const ItemWrap = styled.div`
