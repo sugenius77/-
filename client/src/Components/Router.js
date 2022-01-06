@@ -10,7 +10,7 @@ const router = () => {
         <Routes>
             <Route path="/" element={<Home/>} />
             <Route path="/worldcup" element={<Worldcup/>} />
-            <Route path="/worldcup/rank" element={<WorldcupPresenter2/>} />
+            <Route path="/rank" element={<WorldcupPresenter2/>} />
             <Route path="/random" element={<Random/>} />
             
         </Routes>

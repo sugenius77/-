@@ -12,32 +12,43 @@ const Image = styled.div`
     background-position: center center;
     transition: opacity 0.1s linear;
 `;
+
 const Button = styled.button`
     width:300px;
+    height:30px;
     background-color: #fec478;
     border-radius: 4px;
     transition: opacity 0.1s linear;    
 `;
-function WorldcupPresenter1({worldcupWin, totaldata, prosenter}) {
+const Text = styled.h2`
+    color: ${props=>props.color};
+    display: inline;
+`;
+function WorldcupPresenter1({ worldcupWin, winRank }) {
     const navigate = useNavigate();
     const nextpage = ()=>{
-        navigate('/worldcup/rank');
+        navigate('/rank');
+       
     }
     
     return (
         <>  
-            <Image bgurl={worldcupWin[1]}/>
-            <div>
-                <h2>선택하신 메뉴 {worldcupWin[0]}은(는) 현재
-                {totaldata.map((test)=>{
-                if([Object.keys(test)][0][0]==worldcupWin[0]){
-                    return test[Object.keys(test)]['ranking'];
-                }})}
-                등입니다.</h2>
-                <div style={{display:'flex', justifyContent:'center', marginTop:'100px'}}>
-                    <Button onClick={nextpage}>현재순위 보러가기</Button>
+            {worldcupWin.length > 0 ? <Image bgurl={worldcupWin[1]}/> : <div>라운드 선택중</div>}
+            {worldcupWin.length > 0 ? 
+            <div style={{ margin:'0 auto', padding:'30px' }}>
+                <div>
+                    <Text>선택하신 메뉴 </Text>
+                    <Text color={"#fec478"}>{worldcupWin[0]}</Text>
+                    <Text>(은)는</Text>
+                    <br/><Text>현재</Text>
+                    <Text color={"#fec478"}>{winRank}</Text>
+                    <Text>등 입니다</Text>
+                </div>
+                <div style={{marginTop:'50px'}}>
+                    <Button onClick={nextpage}>Ranking 보러가기</Button>
                 </div>
             </div>
+            : <div></div>}
         </>
     )
 }

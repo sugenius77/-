@@ -25,7 +25,7 @@ const SliderContainer = styled.div`
   display: flex;
 `;
 
-const TOTAL_SLIDES = 20;
+const TOTAL_SLIDES = 50;
 function RandomContainer(props) {
   const [currentSlide, setCurrentSlide] = useState(1);
   const [stop, setStop] = useState(false);
@@ -58,19 +58,45 @@ function RandomContainer(props) {
           slideRef.current.style.transition = '';
           slideRef.current.style.transform = '';
       }else{
-          slideRef.current.style.transition = "all ease 0.05s 0s";
+          slideRef.current.style.transition = "all ease 0.01s 0s";
           slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
           nextSlide();
       }
       
-    }, 50);
+    }, 10);
 },[currentSlide] ,[stop]);
 return (
     <div style={{display:'flex', justifyContent:'center', marginTop:'200px'}}>
-      <div style={{width:'600px'}}>
+      <div style={{width:'1000px'}}>
         <Container>
           {/* {currentSlide} */}
           <SliderContainer ref={slideRef}>
+            <Slide img={"/images/1-1.png"} />
+            <Slide img={"/images/2-1.png"} />
+            <Slide img={"/images/3-1.png"} />
+            <Slide img={"/images/4-1.png"} />
+            <Slide img={"/images/4-2.png"} />
+            <Slide img={"/images/5-1.png"} />
+      
+            <Slide img={"/images/1-2.png"} />
+            <Slide img={"/images/2-2.png"} />
+            <Slide img={"/images/3-2.png"} />
+            <Slide img={"/images/4-2.png"} />
+            <Slide img={"/images/4-2.png"} />
+            <Slide img={"/images/5-2.png"} />
+            <Slide img={"/images/1-1.png"} />
+            <Slide img={"/images/2-1.png"} />
+            <Slide img={"/images/3-1.png"} />
+            <Slide img={"/images/4-1.png"} />
+            <Slide img={"/images/4-2.png"} />
+            <Slide img={"/images/5-1.png"} />
+      
+            <Slide img={"/images/1-2.png"} />
+            <Slide img={"/images/2-2.png"} />
+            <Slide img={"/images/3-2.png"} />
+            <Slide img={"/images/4-2.png"} />
+            <Slide img={"/images/4-2.png"} />
+            <Slide img={"/images/5-2.png"} />
             <Slide img={"/images/1-1.png"} />
             <Slide img={"/images/2-1.png"} />
             <Slide img={"/images/3-1.png"} />
