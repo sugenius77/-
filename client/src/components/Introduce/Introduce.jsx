@@ -39,14 +39,14 @@ const Introduce = () => {
                 heightNum: heightNum,
                 values: {
                     opacity: [
-                        [0, 1, { start: -0.1, end: 0 }, { start: 0, end: 0.1 }],
+                        [0, 1, { start: -0.1, end: 0 }, { start: 0.5, end: 0.15 }],
                         [0, 1, { start: 0.25, end: 0.35 }, { start: 0.4, end: 0.45 }],
                         [0, 1, { start: 0.45, end: 0.6 }, { start: 0.65, end: 0.7 }],
                         [0, 1, { start: 0.7, end: 0.76 }, { start: 0.76, end: 0.83 }],
                         [0, 1, { start: 0.83, end: 0.86 }, { start: 0.86, end: 0.9 }],
                     ],
                     translateY: [
-                        [0, 20, { start: -0.1, end: 0 }, { start: 0, end: 0.1 }],
+                        [0, 20, { start: -0.1, end: 0 }, { start: 0, end: 0.15 }],
                         [0, 20, { start: 0.25, end: 0.35 }, { start: 0.4, end: 0.45 }],
                         [0, 20, { start: 0.45, end: 0.6 }, { start: 0.65, end: 0.7 }],
                         [0, 20, { start: 0.7, end: 0.76 }, { start: 0.76, end: 0.83 }],
