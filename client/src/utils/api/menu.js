@@ -10,17 +10,25 @@ class Menu {
     }
 
     async addLike(menuId) {
-        const res = axios.put('/food/like-add', {
-            id: menuId,
-        });
-        console.log(res);
+        axios
+            .put('/food/like', {
+                menu_id: menuId,
+            })
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => console.log(err));
     }
 
     async subLike(menuId) {
-        const res = axios.put('/food/like-sub', {
-            id: menuId,
-        });
-        console.log(res);
+        axios
+            .put('/food/dislike', {
+                menu_id: menuId,
+            })
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => console.log(err));
     }
 }
 
