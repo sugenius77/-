@@ -39,9 +39,9 @@ const FoodDiv = styled.div`
     justify-content: center;
     background-color: #cae8f9;
 `;
-const Card = ({ title, path, food, onClick }) => {
+const Card = ({ title, path, food, onClick, id }) => {
     const clickHandler = () => {
-        onClick(food);
+        onClick(id);
     };
 
 const ImgDiv = styled.div`
