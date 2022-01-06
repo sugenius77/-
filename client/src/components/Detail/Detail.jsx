@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 import api from '../../utils/api/api';
+
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -68,11 +69,11 @@ const ItemWrap = styled.div`
     }
 
     .ItemWrap-Body-Left {
-        border-radius: 4px;
         display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: calc(1vw + 1vh + 1vmin);
+        align-items: flex-start;
+        justify-content: start;
+        margin: auto;
+        font-size: calc(1vw + 1vmin);
     }
 
     .ItemWrap-Rating {
@@ -82,22 +83,30 @@ const ItemWrap = styled.div`
         display: flex;
         justify-content: right;
         align-items: center;
-
+        background-color: #fec478;
+        color: white;
         img {
             max-width: 3rem;
             min-width: calc(1vw+1vh+1vmin);
         }
+        h3 {
+            color: black;
+        }
     }
 `;
 
-const Item = ({ imgSrc, menuName, rating }) => {
+const Item = ({ imgSrc, menuName, rating, id }) => {
     const [toggle, setToggle] = useState(false);
     const [number, setNumber] = useState(rating);
     const plusHandler = () => {
         if (toggle === false) {
             setNumber((cur) => cur + 1);
+            const res = api.menu.addLike(id);
+            console.log(res);
         } else if (toggle === true) {
             setNumber((cur) => cur - 1);
+            const res = api.menu.subLike(id);
+            console.log(res);
         }
         setToggle((cur) => !cur);
     };
@@ -183,7 +192,13 @@ const Detail = () => {
                     {menuData.map((menu, idx) => {
                         return (
                             <div>
-                                <Item key={idx} imgSrc={menu.image_url} menuName={menu.menu_name} rating={menu.toggle_rating} />
+                                <Item
+                                    key={idx}
+                                    imgSrc={menu.image_url}
+                                    menuName={menu.menu_name}
+                                    rating={menu.toggle_rating}
+                                    id={menu.menu_id}
+                                />
                             </div>
                         );
                     })}
