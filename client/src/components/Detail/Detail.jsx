@@ -18,15 +18,11 @@ const Div = styled.div`
         display: flex;
         flex-direction: column;
     }
-
-    @media screen and (min-width: 680) {
-        display: flex;
-        flex-direction: columns;
-    }
 `;
 
 const ItemWrap = styled.div`
     .ItemWrap {
+        width: 20vw;
         display: flex;
         flex-direction: column;
         background-color: #ffffff;
@@ -41,8 +37,8 @@ const ItemWrap = styled.div`
 
     .ItemWrap-Top {
         display: flex;
-        width: 100%;
 
+        height: 35vh;
         border-top-left-radius: 6px;
         border-top-right-radius: 6px;
         background-color: #e2e5e7;
@@ -51,10 +47,10 @@ const ItemWrap = styled.div`
         justify-content: center;
         text-align: center;
         align-items: center;
-
+        overflow: hidden;
         img {
-            height: 25vh;
-            width: 300px;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
         }
     }
@@ -70,24 +66,24 @@ const ItemWrap = styled.div`
     }
 
     .ItemWrap-Body-Title {
-        width: 100%;
         border-radius: 4px;
         display: flex;
         align-items: center;
         justify-content: center;
+        font-size: calc(1vw + 1vh + 1vmin);
     }
 
     .ItemWrap-Rating {
         padding: 10px 12px;
         font-weight: bold;
-        font-size: 2em;
+        font-size: 2rem;
         display: flex;
         justify-content: right;
         align-items: center;
 
         img {
-            height: 3em;
-            object-fit: scale-down;
+            max-width: 3rem;
+            min-width: calc(1vw+1vh+1vmin);
         }
     }
 `;
@@ -124,7 +120,6 @@ const Item = ({ imgSrc, menuName, rating }) => {
 const Detail = () => {
     const { id } = useParams();
     const [menuData, setMenu] = useState([]);
-    const [loading, setLoading] = useState(false);
 
     const getRealTime = useCallback(async () => {
         const res = await api.menu.getMenu(id);
