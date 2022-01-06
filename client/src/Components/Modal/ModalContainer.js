@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ModalPresenter from './ModalPresenter'
 
 
-const ModalContainer = (props) => {
+const ModalContainer = ( { setModalRound } ) => {
     const [modal, setModal] = useState({
         modalOpen: true,
         round: 0
@@ -13,12 +13,14 @@ const ModalContainer = (props) => {
             modalOpen:true,
             round: e.target.value
         });
-	};
+    };
     const modalClose = (e) => {
-		setModal({
+        setModal({
             modalOpen:false,
             round: round
         });
+        if(modal.round==0){ setModalRound(8); }
+        else{ setModalRound(modal.round); }
 	};
     return (
         <>
