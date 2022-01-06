@@ -20,9 +20,9 @@ const Div = styled.div`
 const Recommendation = ({ recommendHandler, data }) => {
     return (
         <Div>
-            {data.map((info) => (
+            {data.map((info, idx) => (
                 <Card
-                    key={info?.value}
+                    key={info?.value + idx}
                     id={info?.kinds_id}
                     title={info?.value}
                     path={info?.image_url}
