@@ -1,122 +1,94 @@
 import React, { useState, useEffect, useRef } from "react";
 import Slide from "./Slide";
 import styled from "styled-components";
-
+import axios from "axios";
+import RandomPresenter from "./RandomPresenter";
 const Container = styled.div`
     paddingTop:'200px',
     margin:'0 auto'
     width: 300px;
     overflow: hidden; 
 `;
-const Button = styled.button`
-  all: unset;
-  border: 1px solid coral;
-  padding: 0.5em 2em;
-  color: coral;
-  border-radius: 10px;
-  &:hover {
-    transition: all 0.3s ease-in-out;
-    background-color: coral;
-    color: #fff;
-  }
-`;
 const SliderContainer = styled.div`
   width: 200px;
-  display: flex;
+  margin:'0 auto'
 `;
-
-const TOTAL_SLIDES = 50;
-function RandomContainer(props) {
-  const [currentSlide, setCurrentSlide] = useState(1);
-  const [stop, setStop] = useState(false);
-  const [current, setCurrent] = useState(props.current);
-  const slideRef = useRef(null);
-  const nextSlide = () => {
-    if (currentSlide >= TOTAL_SLIDES) { 
-      console.log('ere')
-      setCurrentSlide(1);
-      slideRef.current.style.transform = `translateX(-${"0"}00%)`
-    } else {
-      setCurrentSlide(currentSlide + 1);
-      console.log('hhhhhhh')
+const Text_ = styled.h2`
+color: ${props=>props.color};
+display: inline;
+`;
+function RandomContainer() {
+  const [data, setData] = useState([]);
+  const [choice, setChoice] = useState(-1);
+  const urlErrorCheck = (url_)=>{
+    let result = "";
+    for (let i=0; i<url_.length; i++) { 
+        result = result+(url_[i]);
+        if (url_[i]=='s' && url_[i+1]!="\/"){ result = result+"\/"; }
     }
-  };
-  const prevSlide = () => {
-    setStop(true);
-    slideRef.current.style.transition = '';
-    slideRef.current.style.transform = '';
-    // if (currentSlide === 0) {
-    //   setCurrentSlide(TOTAL_SLIDES);
-    // } else {
-    //   setCurrentSlide(currentSlide - 1);
-    // }
-  };
-  
-  useEffect(() => {
-    const timerId = setTimeout(() => {
-      if(stop){
-          slideRef.current.style.transition = '';
-          slideRef.current.style.transform = '';
-      }else{
-          slideRef.current.style.transition = "all ease 0.01s 0s";
-          slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
-          nextSlide();
-      }
+    return result;            
+  }
+
+  useEffect( async() => {
+    try{
+        await axios.get(`/worldcup/rank`).then((test)=>{
+          // console.log(test.data, 'test');
+          
+          [test].map(res=>(
+            setData(
+              ...data,
+              res.data
+            )
+          ));       
+        });
+    }catch(error){
+        console.log("worldcup/rank"+"-error", error)
+    }
+  }, []);
+  const TOTAL_SLIDES = 64;
+  const slide_ = data.map((res,index)=>{
+    if(index <= TOTAL_SLIDES){
+      return <Slide key={index} img={`${urlErrorCheck(res[2])}`} />;
+    }
+  })  
+
+  const imageRef = useRef(null);
+  const animation = ()=>{
+    console.log("ereree")
+    imageRef.current.style.transitionProperty = 'all';
+    imageRef.current.style.transitionDuration = `${2}s`;
+    imageRef.current.style.transitionTimingFunction = 'cubic-bezier(0, 0, 0.2 ,1)';
+    imageRef.current.style.transitionDelay = `${2}s`;
+    imageRef.current.style.transform = 'translate3d(0, 0, 0)';
+    // imageRef.current.style.transform = 'translateX(300px) scaleX(1.5)';        
+    imageRef.current.style.transform = 'scaleX(1.3)';
+    
+    setTimeout(() => {
+      imageRef.current.style.transitionProperty = '';
+      imageRef.current.style.transitionDuration = ``;
+      imageRef.current.style.transitionTimingFunction = '';
+      imageRef.current.style.transitionDelay = ``;
+      imageRef.current.style.transform = '';
+    }, 2000);
+  }  
+  return (
+    <div>
+      {/* {console.log(choice)} */}
       
-    }, 10);
-},[currentSlide] ,[stop]);
-return (
-    <div style={{display:'flex', justifyContent:'center', marginTop:'200px'}}>
-      <div style={{width:'1000px'}}>
-        <Container>
-          {/* {currentSlide} */}
-          <SliderContainer ref={slideRef}>
-            <Slide img={"/images/1-1.png"} />
-            <Slide img={"/images/2-1.png"} />
-            <Slide img={"/images/3-1.png"} />
-            <Slide img={"/images/4-1.png"} />
-            <Slide img={"/images/4-2.png"} />
-            <Slide img={"/images/5-1.png"} />
-      
-            <Slide img={"/images/1-2.png"} />
-            <Slide img={"/images/2-2.png"} />
-            <Slide img={"/images/3-2.png"} />
-            <Slide img={"/images/4-2.png"} />
-            <Slide img={"/images/4-2.png"} />
-            <Slide img={"/images/5-2.png"} />
-            <Slide img={"/images/1-1.png"} />
-            <Slide img={"/images/2-1.png"} />
-            <Slide img={"/images/3-1.png"} />
-            <Slide img={"/images/4-1.png"} />
-            <Slide img={"/images/4-2.png"} />
-            <Slide img={"/images/5-1.png"} />
-      
-            <Slide img={"/images/1-2.png"} />
-            <Slide img={"/images/2-2.png"} />
-            <Slide img={"/images/3-2.png"} />
-            <Slide img={"/images/4-2.png"} />
-            <Slide img={"/images/4-2.png"} />
-            <Slide img={"/images/5-2.png"} />
-            <Slide img={"/images/1-1.png"} />
-            <Slide img={"/images/2-1.png"} />
-            <Slide img={"/images/3-1.png"} />
-            <Slide img={"/images/4-1.png"} />
-            <Slide img={"/images/4-2.png"} />
-            <Slide img={"/images/5-1.png"} />
-      
-            <Slide img={"/images/1-2.png"} />
-            <Slide img={"/images/2-2.png"} />
-            <Slide img={"/images/3-2.png"} />
-            <Slide img={"/images/4-2.png"} />
-            <Slide img={"/images/4-2.png"} />
-            <Slide img={"/images/5-2.png"} />
-          </SliderContainer>
-          <div style={{display:'flex', justifyContent:'center', marginTop:'100px'}}>
-            <Button onClick={prevSlide}>정지버튼</Button>
+      {choice==-1 && <RandomPresenter animation={animation} slide_={slide_} TOTAL_SLIDES={TOTAL_SLIDES} setChoice={setChoice}/>}
+      {choice!=-1 && 
+      <div style={{marginTop:'200px'}}>
+        <div style={{display:'flex', justifyContent:'center'}}>
+          <div style={{display:'flex',maxWidth:'450px',justifyContent:'center', border:'30px solid #a4d9f5', borderRadius:'5px'}}>
+           <Slide ref={imageRef} img={`${urlErrorCheck(data[choice][2])}`}/>
           </div>
-        </Container>
-      </div>
+        </div>
+        <div style={{display:'flex', justifyContent:'center', marginTop:'50px'}}>
+          <Text_>선택한 메뉴는 !! ~</Text_>&nbsp;&nbsp;<Text_ color={"#fec478"}>{data[choice][0]}</Text_>
+        </div>
+      </div>}
     </div>
-  );
+  )
 }
+
 export default RandomContainer;
