@@ -46,7 +46,7 @@ def like_sub():
 @food.route('/like',methods=['GET'])
 def get_toggle():
     menuID = request.args.get("menuID")
-    result =food_service.toggle_get(menuID)
+    result = food_service.toggle_get(menuID)
     return jsonify(result)
 
     

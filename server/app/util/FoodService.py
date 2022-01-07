@@ -88,9 +88,9 @@ class FoodService:
     # 날씨에 따른 추천 업종
     def weather_recommendation(self,nx,ny):
         # openAPI 이용해서 날씨ID 가져오기
-        openAPI_res = FoodService.request_weather_openAPI(nx,ny)
+        openAPI_res = FoodService.request_weather_openAPI(self,nx,ny)
         items = openAPI_res.json().get('response').get('body').get('items')
-        weatherID = FoodService.weather_id(items)
+        weatherID = FoodService.weather_id(self,items)
         weather_name = db.session\
                         .query(rabbitWeather.weather_name)\
                         .filter(rabbitWeather.id == weatherID)\
@@ -136,40 +136,46 @@ class FoodService:
         return weather_result
             
     # 요일에 따른 추천 업종
-    def date_recommendation(self,rank):
+    def date_recommendation(self):
         dateID = date.today().weekday() # 요일 (월요일=0, 일요일=6)
         date_name = db.session\
                     .query(rabbitDate.date_name)\
-                    .filter(rabbitDate.id == (dateID+1)).first()
-        date_kindsId = db.session\
-                    .query(rabbitDateRanking.kinds_id)\
-                    .filter((rabbitDateRanking.date_id == (dateID+1)) & (rabbitDateRanking.date_rank == rank))\
-                    .first()
+                    .filter(rabbitDate.id == (dateID+1)).first()            
+        date_all = rabbitDateRanking.query\
+                .filter(rabbitDateRanking.date_id == (dateID+1))\
+                .all()
+        date_list = []
+        weight = 12
+        for i in range(0,12):
+            kinds_id = date_all[i].kinds_id
+            weighted_id = [kinds_id] * weight
+            date_list.extend(weighted_id)
+            weight -= 1
+        selected_id = random.choice(date_list)
+        
         random_num = random.randrange(0, db.session
                                         .query(rabbitMenu.image_url)
-                                        .filter(rabbitMenu.kinds_id == date_kindsId[0])
+                                        .filter(rabbitMenu.kinds_id == selected_id)
                                         .count()) 
         date_image = db.session\
                     .query(rabbitMenu.image_url)\
-                    .filter(rabbitMenu.kinds_id == date_kindsId[0])\
+                    .filter(rabbitMenu.kinds_id == selected_id)\
                     [random_num]
         date_kindsName = db.session\
                     .query(rabbitKinds.kinds_name)\
-                    .filter(rabbitKinds.id == date_kindsId[0])\
+                    .filter(rabbitKinds.id == selected_id)\
                     .first()
         date_result = {
         "value": date_name[0],
         "image_url": date_image[0],
         "kinds_name": date_kindsName[0],
-        "kinds_id": date_kindsId[0]
+        "kinds_id": selected_id
         }
-        
         
         return date_result
 
-
     # 시간에 따른 추천 업종
-    def time_recommendation(self,rank):
+    def time_recommendation(self):
         timeslot = (str(time.localtime().tm_hour))   
         time_id = db.session\
                     .query(rabbitTime.id)\
@@ -209,18 +215,18 @@ class FoodService:
         return time_result
     
     def menu_post(self,kindsID):
-        limit_num = 12
         list = rabbitMenu.query\
-                .filter(rabbitMenu.kinds_id == kindsID)\
-                .limit(limit_num)\
-                .with_entities(
-                    rabbitMenu.menu_name,
-                    rabbitMenu.image_url,
-                    rabbitMenu.toggle_rating
-                ).all()
+            .filter(rabbitMenu.kinds_id == kindsID)\
+            .with_entities(
+                rabbitMenu.id,
+                rabbitMenu.menu_name,
+                rabbitMenu.image_url,
+                rabbitMenu.toggle_rating
+            ).all()
         result =[]
         for item in list:
-            result.append(dict({"menu_name":item[0],"image_url":item[1],"toggle_rating" :item[2]}))
+            result.append(dict({"menu_id":item[0],"menu_name":item[1],"image_url" :item[2],"toggle_rating": item[3]}))
+    
 
         return result
 
