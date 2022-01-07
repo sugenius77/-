@@ -18,7 +18,8 @@ const TitleDiv = styled.div`
 `;
 
 const ImgDiv = styled.div`
-    display: flex;
+    background-color: gray;
+    overflow: hidden;
     height: 80vh;
     align-items: center;
     background-color: gray;
@@ -39,37 +40,14 @@ const FoodDiv = styled.div`
     justify-content: center;
     background-color: #cae8f9;
 `;
-const Card = ({ title, path, food, onClick, id }) => {
+
+const Card = ({ title, path, id, food, onClick }) => {
     const clickHandler = () => {
         onClick(id);
     };
 
-const ImgDiv = styled.div`
-    background-color: gray;
-    overflow: hidden;
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-`;
-
-const FoodDiv = styled.div`
-    font-size: 2rem;
-    height: 5vh;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #cae8f9;
-`;
-const Card = ({ title, path, food, onClick }) => {
-    const clickHandler = () => {
-        onClick(food);
-    };
-
     return (
-        <Div onClick={clickHandler}>
+        <Div id={id} onClick={clickHandler}>
             <TitleDiv>{title}</TitleDiv>
             <ImgDiv>
                 <img src={`${process.env.PUBLIC_URL}/${path}`} alt="사진" />
