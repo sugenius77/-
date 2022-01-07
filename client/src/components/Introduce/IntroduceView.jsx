@@ -105,7 +105,7 @@ const IntroduceView = ({ sceneInfo, currentScene, messageOpacity, messageTransla
                     </>
                 )}
             </Scene>
-            <End>
+            <End scrollHeight={sceneInfo[3].scrollHeight}>
                 <h1>
                     인스타그램 데이터를 이용하여
                     <br /> 지금 이 순간 가장 인기 있는 메뉴를
