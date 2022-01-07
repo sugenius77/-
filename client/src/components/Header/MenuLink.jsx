@@ -24,11 +24,6 @@ const Div = styled.div`
         align-items: center;
         text-align: center;
         width: 100%;
-
-
-        a {
-            width: 100%;
-            margin-top: 4px;
         a {
             width: 100%;
             margin-top: 4px;
