@@ -16,7 +16,7 @@ const geolocationOptions = {
 const RealTime = () => {
     const [loadingPercent, setLoadingPercent] = useState(0);
     const { location: currentLocation, error: currentError } = useCurrentLocation(geolocationOptions);
-    const [data, setData] = useState([]);
+    const [data, setData] = useState(undefined);
     const history = useHistory();
     const loading = useMemo(() => (loadingPercent >= 125 ? true : false), [loadingPercent]);
 
@@ -38,7 +38,7 @@ const RealTime = () => {
         let nx = parseInt(currentLocation.latitude);
         let ny = parseInt(currentLocation.longitude);
         const res = await api.realtime.getRealTime(nx, ny);
-        if (res.data !== '500 server error') {
+        if (res.data !== undefined) {
             console.log(res);
             setData(() => {
                 const newData = [...res.data];
@@ -62,14 +62,14 @@ const RealTime = () => {
         if (!currentLocation) {
             console.log(currentError);
             return;
-        } else if (data.length <= 1) {
+        } else {
             getRealTime();
         }
         //eslint-disable-next-line
     }, [getRealTime]);
 
     useEffect(() => {
-        if (data.length > 0) {
+        if (Array.isArray(data)) {
             setTimeout(() => {
                 setLoadingPercent((cur) => cur + 25);
             }, 4000);
