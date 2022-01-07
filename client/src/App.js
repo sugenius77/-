@@ -1,13 +1,11 @@
-import './App.css';
-import Header from './components/Header/Header';
-import Index from './Index';
+import React, {useState, useEffect} from 'react'
+import Router from "./Components/Router";
 function App() {
-    return (
-        <div className="App">
-            <Header></Header>
-            <Index />
-        </div>
-    );
+  return (
+    <>
+      <Router/>
+    </>
+  );
 }
 
 export default App;
