@@ -7,7 +7,7 @@ const Index = () => {
                 <Route exact path="/realtime">
                     <RealTime />
                 </Route>
-                r
+
                 <Route path="/detail/:id">
                     <Detail />
                 </Route>
