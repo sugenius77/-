@@ -9,7 +9,7 @@ class RealTime {
                 },
             });
         } catch (error) {
-            console.error(error);
+            return this.getRealTime(nx, ny);
         }
     }
 }
