@@ -6,6 +6,7 @@ export const HeaderContext = createContext();
 const Header = () => {
     const [toggle, setToggle] = useState(false);
     const [innerWidth, setInnerWidth] = useState(0);
+    const logoName = '배달구구';
     const toggleHandler = () => {
         setToggle((cur) => !cur);
     };
@@ -24,6 +25,6 @@ const Header = () => {
         };
     }, []);
 
-    return <HeaderView innerWidth={innerWidth} toggle={toggle} toggleHandler={toggleHandler} />;
+    return <HeaderView innerWidth={innerWidth} toggle={toggle} toggleHandler={toggleHandler} logoName={logoName} />;
 };
 export default Header;
