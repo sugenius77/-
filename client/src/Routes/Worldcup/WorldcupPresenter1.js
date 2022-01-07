@@ -18,7 +18,12 @@ const Button = styled.button`
     height:30px;
     background-color: #fec478;
     border-radius: 4px;
-    transition: opacity 0.1s linear;    
+    transition: opacity 0.1s linear;
+    &:hover {
+        transition: all 0.3s ease-in-out;
+        background-color: #fec478;
+        color: #fff;
+    }  
 `;
 const Text = styled.h2`
     color: ${props=>props.color};
