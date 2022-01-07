@@ -1,13 +1,16 @@
 import axios from 'axios';
 class RealTime {
     async getRealTime(nx, ny) {
-        const res = axios.get('/food/recommendation', {
-            params: {
-                nx: nx,
-                ny: ny,
-            },
-        });
-        return res ? res : 'error';
+        try {
+            return await axios.get('/food/recommendation', {
+                params: {
+                    nx: nx,
+                    ny: ny,
+                },
+            });
+        } catch (error) {
+            console.error(error);
+        }
     }
 }
 

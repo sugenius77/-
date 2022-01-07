@@ -114,7 +114,7 @@ const IntroduceView = ({ sceneInfo, currentScene, messageOpacity, messageTransla
                 </h1>
 
                 <img src={`${process.env.PUBLIC_URL}/loading/logo_512.png`} style={{ transform: 'scale(0.5)' }} alt="로고이미지" />
-                <h1>구구절절</h1>
+                <h1>배달구구</h1>
                 <LinkDiv>
                     <Link to="/realtime">추천 받으러 가기</Link>
                 </LinkDiv>
