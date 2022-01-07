@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import api from '../../utils/api/api';
+
 const ItemWrap = styled.div`
     .ItemWrap {
         width: 100%;
@@ -45,6 +46,10 @@ const ItemWrap = styled.div`
         justify-content: start;
         margin: auto;
         font-size: calc(1vw + 1vmin);
+
+        @media screen and (max-width: 900px) {
+            font-size: 1em;
+        }
     }
 
     .ItemWrap-Rating {

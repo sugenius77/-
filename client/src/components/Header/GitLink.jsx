@@ -26,7 +26,7 @@ const GitLink = () => {
             <a href="https://github.com/">
                 <img src={`${process.env.PUBLIC_URL}/header/github_32.png`} alt="github" />
             </a>
-            <a href="https://gitlab.com/">
+            <a href="https://kdt-gitlab.elice.io/003-part3-deliveryservice/team9">
                 <img src={`${process.env.PUBLIC_URL}/header/gitlab_32.png`} alt="gitlab" />
             </a>
         </Div>

@@ -48,7 +48,6 @@ const Container = styled.div`
 const Detail = () => {
     const { id } = useParams();
     const [menuData, setMenu] = useState([]);
-    const [loading, setLoading] = useState(false);
     const [innerWidth, setInnerWidth] = useState(window.innerWidth);
     const settings = {
         dots: true,
@@ -80,7 +79,7 @@ const Detail = () => {
     useEffect(() => {
         getRealTime();
         //eslint-disable-next-line
-    }, [getRealTime]);
+    }, []);
 
     return (
         <Div>
@@ -91,15 +90,13 @@ const Detail = () => {
                 <Slider {...settings}>
                     {menuData.map((menu, idx) => {
                         return (
-                            <div>
-                                <Item
-                                    key={menu + idx}
-                                    imgSrc={menu.image_url}
-                                    menuName={menu.menu_name}
-                                    rating={menu.toggle_rating}
-                                    id={menu.menu_id}
-                                />
-                            </div>
+                            <Item
+                                key={menu + idx}
+                                imgSrc={menu.image_url}
+                                menuName={menu.menu_name}
+                                rating={menu.toggle_rating}
+                                id={menu.menu_id}
+                            />
                         );
                     })}
                 </Slider>
