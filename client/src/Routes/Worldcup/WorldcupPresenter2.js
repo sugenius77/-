@@ -53,7 +53,7 @@ function WorldcupPresenter2() {
       return result;            
     }
     const table_ = data.map((res,index)=>{
-        if(index <= 10){
+        if(index <= data.length){
           return <Table_ key={index} url={`${urlErrorCheck(res[2])}`} menu={res[0]} rank={res[1]} />;
         }
     })
@@ -62,7 +62,7 @@ function WorldcupPresenter2() {
 
     return (
         <>
-        <div style={{ margin:'0 auto', padding:'100px' }}></div>
+        <div style={{ margin:'0 auto', padding:'70px' }}></div>
             <div style={{textAlign:'center'}} >
                 <Text_ color={"#81c8ee"}>메뉴 </Text_>
                 <Text_ color={"#fec478"}>Ranking </Text_>

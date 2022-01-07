@@ -1,6 +1,5 @@
 import React,{ useEffect,useState, useRef } from 'react'
 import axios from "axios";
-// import ModalContainer from '../../Components/Modal/ModalContainer'
 import ModalContainer from '../../components/Modal/ModalContainer';
 
 import styled, {css, keyframes} from "styled-components";
@@ -102,10 +101,20 @@ const WorldcupContainer = () => {
         for(let i=0; i<2; i++){
             // console.log([Object.keys(worldcupData[i])][0],'ddd');
             let url_ = worldcupData[i][Object.keys(worldcupData[i])]['img_url'];
-            result.push(<div key={i}>
+            result.push(<div style={{display:'inline-flex'}}> 
+                        <div key={i} >
                             <Image ref={imageRef[i]} animation={animation} bgurl={urlErrorCheck(url_)}/>
                             <Button onClick={ (e) => {arrayReset1(i, e)} }> {[Object.keys(worldcupData[i])][0]} </Button>
-                        </div>);
+                        </div>
+                        {i==0 &&
+                            <div>
+                                <div style={{height:'43%', backgroundColor:'#a4d9f5'}}></div>
+                                <div style={{height:'10%', backgroundColor:'#a4d9f5', paddingTop:'5px',fontFamily:'sans-serif',fontWeight:'bold',color:'#fec478',fontSize:'xx-large'}}>vs</div>
+                                <div style={{height:'55%', backgroundColor:'#a4d9f5'}}></div>
+                            </div>}
+                        </div>
+                        
+                        );
         }
         return result;
     };
@@ -163,7 +172,7 @@ const WorldcupContainer = () => {
                     <Text color={"#81c8ee"}>강</Text>
                 </div>}
                 <div style={{display:"flex", justifyContent:'center',alignItems:'center'}}>
-                    <div style={{display:'flex', height:303, border:'30px solid #a4d9f5', borderRadius:'5px',paddingBottom:'20px'}}>
+                    <div style={{display:'flex', height:378, border:'30px solid #a4d9f5', borderRadius:'5px',paddingBottom:'20px'}}>
                         {worldcupData.length > 1 ? menufunction() :
                             modalRound==-1 ? <div>라운드 선택중</div> :
                             <WorldcupPresenter1 winRank={winRank} urlErrorCheck={urlErrorCheck} worldcupWin={worldcupWin} />} 

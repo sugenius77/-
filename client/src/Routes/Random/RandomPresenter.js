@@ -70,21 +70,21 @@ function RandomPresenter({ slide_, TOTAL_SLIDES, setChoice, animation}) {
 
 
 return (
-    <div style={{display:'flex', justifyContent:'center', marginTop:'200px'}}>
+    <div style={{display:'flex', justifyContent:'center', marginTop:'140px'}}>
            
         <div style={{width:'1000px'}}>
             <Container>
             <div style={{display:'flex', justifyContent:'center'}}>
             <Text_ color={"#fec478"}>Random</Text_>&nbsp;&nbsp;&nbsp;<Text_>선택</Text_>
             </div>
-            <div style={{display:'flex',maxWidth:'1000px',justifyContent:'center', border:'90px solid #a4d9f5', borderRadius:'5px'}}>
+            <div style={{display:'flex',maxWidth:'1000px',justifyContent:'center', border:'50px solid #a4d9f5', borderRadius:'5px'}}>
          
             <SliderContainer ref={slideRef}>
                 {slide_}
             </SliderContainer>
             </div>
             <div style={{width:'100px'}}></div>
-            <div style={{display:'flex', justifyContent:'center', marginTop:'50px'}}>
+            <div style={{display:'flex', justifyContent:'center', marginTop:'10px'}}>
                 <Button onClick={stopSlide}>멈춰!</Button>
             
                 {/* <Button onClick={(e)=>{setStop(false); setCurrentSlide(currentSlide+1);}}>멈추지마!</Button> */}
