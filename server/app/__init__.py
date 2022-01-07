@@ -2,7 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from app.config import config
-
+from flask_cors import CORS
 
 db = SQLAlchemy()
 
@@ -10,7 +10,7 @@ def create_app():
 
 
     app = Flask(__name__)
-
+    CORS(app)
     @app.errorhandler(400)
     def bad_request(error):
         app.logger.error(error)
