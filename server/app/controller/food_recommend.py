@@ -11,10 +11,9 @@ def get_recommendation():
 
     nx = request.args.get("nx")
     ny = request.args.get("ny")
-    rank = request.args.get("rank")
-    weather_result = food_service.weather_recommendation(nx,ny,rank)
-    date_result = food_service.date_recommendation(rank)
-    time_result = food_service.time_recommendation(rank)
+    weather_result = food_service.weather_recommendation(nx,ny)
+    date_result = food_service.date_recommendation()
+    time_result = food_service.time_recommendation()
     result = [weather_result, date_result, time_result]
     return jsonify(result)
 
