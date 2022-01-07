@@ -4,11 +4,13 @@ import MenuToggle from './MenuToggle';
 const Div = styled.div`
     font-size: 32px;
     display: flex;
-    padding-top: 1.5vh;
+
+    @media screen and (max-width: 1040px) {
+        padding-top: 2vh;
+    }
 `;
 const Logo = styled.div`
     display: flex;
-    padding: 8px 12px;
     margin-left: 1em;
     align-items: center;
     img {
