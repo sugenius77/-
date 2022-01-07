@@ -1,6 +1,8 @@
 import React,{ useEffect,useState, useRef } from 'react'
 import axios from "axios";
-import ModalContainer from '../../Components/Modal/ModalContainer'
+// import ModalContainer from '../../Components/Modal/ModalContainer'
+import ModalContainer from '../../components/Modal';
+
 import styled, {css, keyframes} from "styled-components";
 import WorldcupPresenter1 from './WorldcupPresenter1';
 import api from '../../utils/api/api';
@@ -111,7 +113,7 @@ const WorldcupContainer = () => {
     useEffect( async() => {
         if(modalRound!=-1){
             try{
-                await axios.get(`worldcup/start_rank?round=${modalRound}`)
+                await axios.get(`http://localhost:5000/worldcup/start_rank?round=${modalRound}`)
                 .then((res) => {
                     setworldcupData(
                         ...worldcupData,
@@ -131,7 +133,7 @@ const WorldcupContainer = () => {
         const tt = "";
         if(worldcupWin.length > 0){
             try{
-                await axios.get(`worldcup/output_rank?menu_id=${worldcupWin[2]}`)
+                await axios.get(`http://localhost:5000/worldcup/output_rank?menu_id=${worldcupWin[2]}`)
                 .then((test)=>{
                     console.log(test.data['world_ranking'],'여기기');
                     setWinRank(test.data['world_ranking']);
@@ -140,7 +142,7 @@ const WorldcupContainer = () => {
                 console.log("worldcup/rank"+"-error")
             }
             try{
-                await axios.put(`worldcup/rank`, { "menu_id": worldcupWin[2] })
+                await axios.put(`http://localhost:5000/worldcup/rank`, { "menu_id": worldcupWin[2] })
                 .then((res) => {
                     console.log('put_api', res)
                 });

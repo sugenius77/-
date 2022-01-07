@@ -1,5 +1,7 @@
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes, Switch } from 'react-router-dom';
 import { Detail, Developer, Introduce, RealTime } from './Pages';
+import Random from './Routes/Random';
+import Worldcup from './Routes/Worldcup';
 const Index = () => {
     return (
         <div className="container">
@@ -7,12 +9,15 @@ const Index = () => {
                 <Route exact path="/realtime">
                     <RealTime />
                 </Route>
-
                 <Route path="/detail/:id">
                     <Detail />
                 </Route>
-                <Route path="/random">랜덤 추천</Route>
-                <Route path="/worldcup">음식 월드컵</Route>
+                <Route path="/random">
+                    <Random/>
+                </Route>
+                <Route path="/worldcup">
+                    <Worldcup/>
+                </Route>
                 <Route path="/developer">
                     <Developer />
                 </Route>

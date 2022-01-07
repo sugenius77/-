@@ -31,7 +31,7 @@ function RandomContainer() {
 
   useEffect( async() => {
     try{
-        await axios.get(`/worldcup/rank`).then((test)=>{
+        await axios.get(`http://localhost:5000/worldcup/rank`).then((test)=>{
           // console.log(test.data, 'test');
           
           [test].map(res=>(
