@@ -1,5 +1,5 @@
 import axios from 'axios';
-class worldcup_rank {
+class Rank {
     async getRank() {
         const res = axios.get('http://localhost:5000/worldcup/rank', {
             params: {},
@@ -8,5 +8,5 @@ class worldcup_rank {
     }
 }
 
-const menu = new Menu();
-export default worldcup_rank;
+const rank = new Rank();
+export default rank;

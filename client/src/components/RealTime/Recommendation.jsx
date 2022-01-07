@@ -5,7 +5,7 @@ const Div = styled.div`
     margin-top: 10vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    height:90vh;
+    
     body {
         color: red;
     }
