@@ -1,31 +1,24 @@
 import styled from 'styled-components';
-import MenuToggle from './MenuToggle';
+import logo from './images/logo_48.png';
+import MenuButton from './MenuButton';
 
 const Div = styled.div`
+    padding: 8px 12px;
     font-size: 32px;
     display: flex;
-
-    @media screen and (max-width: 1040px) {
-        padding-top: 2vh;
-    }
-`;
-const Logo = styled.div`
-    display: flex;
-    margin-left: 1em;
     align-items: center;
+
     img {
         margin-right: 12px;
     }
 `;
-const MainLogo = ({ innerWidth, toggleHandler, logoName }) => {
+
+const MainLogo = ({ innerWidth, onClick }) => {
     return (
         <Div>
-            <Logo>
-                <img src={`${process.env.PUBLIC_URL}/header/logo_48.png`} alt="logo" />
-                <strong>{logoName}</strong>
-            </Logo>
-
-            {innerWidth <= 1040 && <MenuToggle toggleHandler={toggleHandler} />}
+            <img src={logo} alt="logo" />
+            <strong>구구절절</strong>
+            {innerWidth < 980 && <MenuButton onClick={onClick} />}
         </Div>
     );
 };
