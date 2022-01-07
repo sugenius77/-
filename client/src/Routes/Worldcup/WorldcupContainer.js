@@ -1,7 +1,7 @@
 import React,{ useEffect,useState, useRef } from 'react'
 import axios from "axios";
 // import ModalContainer from '../../Components/Modal/ModalContainer'
-import ModalContainer from '../../components/Modal';
+import ModalContainer from '../../components/Modal/ModalContainer';
 
 import styled, {css, keyframes} from "styled-components";
 import WorldcupPresenter1 from './WorldcupPresenter1';

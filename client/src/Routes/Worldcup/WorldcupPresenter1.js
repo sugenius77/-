@@ -32,7 +32,7 @@ const Text = styled.h2`
 function WorldcupPresenter1({ worldcupWin, winRank }) {
     const navigate = useHistory();
     const nextpage = ()=>{
-        navigate('/rank');
+        navigate.push('/rank');
        
     }
     
