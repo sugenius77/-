@@ -1,7 +1,7 @@
 import React, {useEffect}from 'react'
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
-import {useNavigate} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
 const Image = styled.div`
     background-image: url(${props=>props.bgurl});
@@ -30,7 +30,7 @@ const Text = styled.h2`
     display: inline;
 `;
 function WorldcupPresenter1({ worldcupWin, winRank }) {
-    const navigate = useNavigate();
+    const navigate = useHistory();
     const nextpage = ()=>{
         navigate('/rank');
        
