@@ -142,10 +142,10 @@ const WorldCup = () => {
 
     return (
         <div>
-            {modalRound == -1 && <Modal setModalRound={setModalRound} />}
+            {modalRound === -1 && <Modal setModalRound={setModalRound} />}
 
             <div style={{ margin: '0 auto', padding: '100px' }}></div>
-            {modalRound != -1 && (
+            {modalRound !== -1 && (
                 <div style={{ textAlign: 'center' }}>
                     <Text color={'#81c8ee'}>메뉴 월드컵</Text>
                     <Text color={'#fec478'}>{modalRound}</Text>
@@ -156,7 +156,7 @@ const WorldCup = () => {
                 <div style={{ display: 'flex', height: 303, border: '30px solid #a4d9f5', borderRadius: '5px', paddingBottom: '20px' }}>
                     {worldcupData.length > 1 ? (
                         menufunction()
-                    ) : modalRound == -1 ? (
+                    ) : modalRound === -1 ? (
                         <div>라운드 선택중</div>
                     ) : (
                         <WorldCupView winRank={winRank} urlErrorCheck={urlErrorCheck} worldcupWin={worldcupWin} />
