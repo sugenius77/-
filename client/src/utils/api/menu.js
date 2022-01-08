@@ -1,7 +1,7 @@
 import axios from 'axios';
 class Menu {
     async getMenu(id) {
-        const res = axios.get('/food/menu', {
+        const res = axios.get('http://localhost:5000/food/menu', {
             params: {
                 kindsID: id,
             },
@@ -11,7 +11,7 @@ class Menu {
 
     async addLike(menuId) {
         axios
-            .put('/food/like', {
+            .put('http://localhost:5000/food/like', {
                 menu_id: menuId,
             })
             .catch((err) => console.log(err));
@@ -19,7 +19,7 @@ class Menu {
 
     async subLike(menuId) {
         axios
-            .put('/food/dislike', {
+            .put('http://localhost:5000/food/dislike', {
                 menu_id: menuId,
             })
             .catch((err) => console.log(err));
