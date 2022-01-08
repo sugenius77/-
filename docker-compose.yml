@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+
+  server:
+    build: ./server
+    container_name: server
+    restart: always
+    env_file:
+      - dev.env
+    ports:
+      - "5000:5000"
+  nginx: 
+    # Since our Dockerfile for web-server is located in react-app foler, our build context is ./react-app
+    build: ./client
+    container_name: nginx
+    ports:
+      - "8080:8080"
