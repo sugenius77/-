@@ -15,6 +15,7 @@ const Style = {
     display: 'flex',
     justifyContent: 'center',
 };
+
 function Rank() {
     const [data, setData] = useState([]);
     const [rankData, setRankData] = useState([]);
@@ -22,7 +23,6 @@ function Rank() {
         try {
             await axios.get(`http://localhost:5000/worldcup/rank`).then((test) => {
                 // console.log(test.data, 'test');
-
                 [test].map((res) => setData(...data, res.data));
             });
         } catch (error) {
@@ -43,7 +43,7 @@ function Rank() {
         let result = '';
         for (let i = 0; i < url_.length; i++) {
             result = result + url_[i];
-            if (url_[i] == 's' && url_[i + 1] != '/') {
+            if (url_[i] === 's' && url_[i + 1] !== '/') {
                 result = result + '/';
             }
         }
