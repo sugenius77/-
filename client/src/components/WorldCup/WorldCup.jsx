@@ -5,6 +5,30 @@ import styled from 'styled-components';
 import WorldCupView from './WorldCupView';
 import Modal from './Modal/Modal';
 
+
+const Box1 = styled.div`
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+`;
+
+const Box2 = styled.div`
+    display: flex;
+    height: 303;
+    border: ${(props)=>(props.size==-1?10:30)}px solid #a4d9f5;
+    borderRadius: 5px
+    paddingBottom: 20px;
+    @media screen and (max-width: 1040px) {
+        height: 264px;
+        width: 160px;
+        background-size: cover;
+        flex-direction: column;
+        display: flex;
+        border: 10px solid #a4d9f5;
+        borderRadius: 5px
+        paddingBottom: 20px;
+    }
+`;
 const Image = styled.div`
     background-image: url(${(props) => props.bgurl});
     &:hover {
@@ -18,6 +42,12 @@ const Image = styled.div`
     border-radius: 4px;
     background-position: center center;
     transition: opacity 0.1s linear;
+    @media screen and (max-width: 1040px) {
+        height: 100px;
+        width: 140px;
+        background-size: cover;
+        flex-direction: column;
+    }
 `;
 
 const Button = styled.button`
@@ -30,6 +60,10 @@ const Button = styled.button`
         transition: all 0.3s ease-in-out;
         background-color: #fec478;
         color: #fff;
+    }
+    @media screen and (max-width: 1040px) {
+        height: 22px;
+        width: 100px;
     }
 `;
 const Text = styled.h2`
@@ -141,7 +175,7 @@ const WorldCup = () => {
     }, [modalRound]);
 
     return (
-        <div>
+        <div style={{backgroundColor:'#fff'}}>
             {modalRound === -1 && <Modal setModalRound={setModalRound} />}
 
             <div style={{ margin: '0 auto', padding: '100px' }}></div>
@@ -152,8 +186,8 @@ const WorldCup = () => {
                     <Text color={'#81c8ee'}>강</Text>
                 </div>
             )}
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <div style={{ display: 'flex', height: 303, border: '30px solid #a4d9f5', borderRadius: '5px', paddingBottom: '20px' }}>
+            <Box1>
+                <Box2 size={modalRound}>
                     {worldcupData.length > 1 ? (
                         menufunction()
                     ) : modalRound === -1 ? (
@@ -161,8 +195,8 @@ const WorldCup = () => {
                     ) : (
                         <WorldCupView winRank={winRank} urlErrorCheck={urlErrorCheck} worldcupWin={worldcupWin} />
                     )}
-                </div>
-            </div>
+                </Box2>
+            </Box1>
         </div>
     );
 };
