@@ -5,4 +5,8 @@ export default function Slide({ img }) {
 const IMG = styled.img`
     width: 50vh;
     height: 50vh;
+    @media screen and (max-width: 1040px) {
+        width: 15vh;
+        height: 30vh;
+    }
 `;

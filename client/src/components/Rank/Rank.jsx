@@ -13,7 +13,8 @@ const Style = {
     width: '600px',
     margin: '0 auto',
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'center'
+    
 };
 
 function Rank() {
@@ -70,7 +71,7 @@ function Rank() {
                         overflow: 'auto',
                         border: '30px solid #a4d9f5',
                         borderRadius: '5px',
-                        paddingBottom: '20px',
+                        paddingBottom: '20px'
                     }}
                 >
                     <div style={Style}>

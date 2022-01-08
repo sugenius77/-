@@ -7,9 +7,17 @@ import Modal from './Modal/Modal';
 
 
 const Box1 = styled.div`
+    position: absolute;
+    left: 50%;
+    top: ${(props)=>(props.size==-1?50:60)}%;
+    transform: translate(-50%, -50%);
+    
     display: flex; 
     justify-content: center;
     align-items: center;
+    @media screen and (max-width: 1040px) {
+        top: 60%;
+    }
 `;
 
 const Box2 = styled.div`
@@ -19,14 +27,28 @@ const Box2 = styled.div`
     borderRadius: 5px
     paddingBottom: 20px;
     @media screen and (max-width: 1040px) {
-        height: 264px;
-        width: 160px;
+        height: ${(props)=>(props.size==-1?330:660)}px
+        width: 330px;
         background-size: cover;
         flex-direction: column;
         display: flex;
         border: 10px solid #a4d9f5;
         borderRadius: 5px
         paddingBottom: 20px;
+    }
+`;
+const Box3 = styled.div`
+    
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    @media screen and (max-width: 1040px) {
+        top: 20%;
     }
 `;
 const Image = styled.div`
@@ -43,8 +65,8 @@ const Image = styled.div`
     background-position: center center;
     transition: opacity 0.1s linear;
     @media screen and (max-width: 1040px) {
-        height: 100px;
-        width: 140px;
+        height: 310px;
+        width: 310px;
         background-size: cover;
         flex-direction: column;
     }
@@ -178,15 +200,16 @@ const WorldCup = () => {
         <div style={{backgroundColor:'#fff'}}>
             {modalRound === -1 && <Modal setModalRound={setModalRound} />}
 
-            <div style={{ margin: '0 auto', padding: '100px' }}></div>
+            <div style={{ margin: '0 auto' }}></div>
             {modalRound !== -1 && (
-                <div style={{ textAlign: 'center' }}>
+                <Box3 style={{ textAlign: 'center' }}>
                     <Text color={'#81c8ee'}>메뉴 월드컵</Text>
                     <Text color={'#fec478'}>{modalRound}</Text>
                     <Text color={'#81c8ee'}>강</Text>
-                </div>
+                </Box3>
             )}
-            <Box1>
+            <Box1 size={modalRound}>
+                
                 <Box2 size={modalRound}>
                     {worldcupData.length > 1 ? (
                         menufunction()
