@@ -8,12 +8,11 @@ services:
     restart: always
     env_file:
       - dev.env
-    expose:
-      - 8080
-
-  client:
-    build: ./client
-    container_name: client
-    restart: always
     ports:
-      - "80:80"
+      - "5000:5000"
+  nginx: 
+    # Since our Dockerfile for web-server is located in react-app foler, our build context is ./react-app
+    build: ./client
+    container_name: nginx
+    ports:
+      - "8080:8080"
