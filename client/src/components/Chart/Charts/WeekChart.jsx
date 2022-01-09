@@ -78,7 +78,7 @@ const WeekChart = ({ windowSize }) => {
                 <XAxis dataKey="name" />
                 <YAxis yAxisId="left" label={{ value: '건', offset: 10, angle: 0, position: 'top' }} />
                 <Tooltip />
-                {windowSize.width > 640 && <Legend />}
+                {windowSize.width > 1100 && <Legend />}
                 {Lines.map((food, idx) => (
                     <Line
                         yAxisId="left"
