@@ -19,7 +19,7 @@ const Div = styled.div`
         color: #fec478;
     }
 
-    @media screen and (max-width: 1040px) {
+    @media screen and (max-width: 1090px) {
         flex-direction: column;
         align-items: center;
         text-align: center;
@@ -47,6 +47,9 @@ const MenuLink = ({ toggleHandler }) => {
                 </Link>
                 <Link to="/worldcup" onClick={toggleHandler}>
                     음식 월드컵
+                </Link>
+                <Link to="/chart" onClick={toggleHandler}>
+                    데이터
                 </Link>
                 <Link to="/developer" onClick={toggleHandler}>
                     개발자 소개
