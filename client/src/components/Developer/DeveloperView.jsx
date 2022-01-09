@@ -23,7 +23,7 @@ const MainMessage = styled.div.attrs((props) => ({
     line-height: 1.2;
 `;
 const End = styled.div`
-    margin-top: 60vh;
+    margin-top: 100vh;
     padding-bottom: 10vh;
     display: flex;
     flex-direction: column;

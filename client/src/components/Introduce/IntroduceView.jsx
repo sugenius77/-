@@ -54,7 +54,6 @@ const End = styled.div`
 `;
 
 const LinkDiv = styled.div`
-    border: 1px solid red;
     width: 30vw;
     height: 10vh;
     font-size: 2em;
@@ -119,7 +118,7 @@ const IntroduceView = ({ sceneInfo, currentScene, messageOpacity, messageTransla
                 <LinkDiv>
                     <Link to="/realtime">추천 받으러 가기</Link>
                 </LinkDiv>
-                <LinkDiv>
+                <LinkDiv style={{ backgroundColor: '#a5c9ff' }}>
                     <Link to="/chart">데이터 보러가기</Link>
                 </LinkDiv>
             </End>
