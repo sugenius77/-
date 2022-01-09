@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+
 const Scene = styled.div`
     display: flex;
     background-color: #cae8f9;
@@ -53,7 +54,6 @@ const End = styled.div`
 `;
 
 const LinkDiv = styled.div`
-    border: 1px solid red;
     width: 30vw;
     height: 10vh;
     font-size: 2em;
@@ -117,6 +117,9 @@ const IntroduceView = ({ sceneInfo, currentScene, messageOpacity, messageTransla
                 <h1>배달구구</h1>
                 <LinkDiv>
                     <Link to="/realtime">추천 받으러 가기</Link>
+                </LinkDiv>
+                <LinkDiv style={{ backgroundColor: '#a5c9ff' }}>
+                    <Link to="/chart">데이터 보러가기</Link>
                 </LinkDiv>
             </End>
         </>

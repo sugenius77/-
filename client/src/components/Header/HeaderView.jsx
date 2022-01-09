@@ -17,7 +17,7 @@ const Div = styled.div`
 
     font-size: 24px;
     background-color: white;
-    @media screen and (max-width: 1040px) {
+    @media screen and (max-width: 1090px) {
         flex-direction: column;
         align-items: flex-start;
         background-color: white;
@@ -28,8 +28,8 @@ const HeaderView = ({ toggle, innerWidth, toggleHandler, logoName }) => {
     return (
         <Div innerWidth={toggle}>
             <MainLogo innerWidth={innerWidth} toggleHandler={toggleHandler} logoName={logoName} />
-            {innerWidth > 1040 && <MenuLink />}
-            {innerWidth <= 1040 && toggle && <MenuLink />}
+            {innerWidth > 1090 && <MenuLink />}
+            {innerWidth <= 1090 && toggle && <MenuLink />}
         </Div>
     );
 };

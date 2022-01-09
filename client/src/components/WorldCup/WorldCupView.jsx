@@ -19,6 +19,8 @@ const Box3 = styled.div`
     
     @media screen and (max-width: 1040px) {
         margin-top: 20px;
+        font-weight: bold;
+
     }
 `;
 const Image = styled.div`
@@ -35,8 +37,8 @@ const Image = styled.div`
     background-position: center center;
     transition: opacity 0.1s linear;
     @media screen and (max-width: 1040px) {
-        height: 100px;
-        width: 140px;
+        height: 310px;
+        width: 310px;
         background-size: cover;
         flex-direction: column;
     }
@@ -62,7 +64,7 @@ const Text = styled.h2`
     color: ${(props) => props.color};
     display: inline;
     @media screen and (max-width: 1040px) {
-        font-size: xx-small;
+        font-size: large;
     }
 `;
 function WorldCupView({ worldcupWin, winRank }) {

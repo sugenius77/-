@@ -1,5 +1,5 @@
 import { Route, Switch } from 'react-router-dom';
-import { Detail, Developer, Introduce, RealTime, Random, WorldCup, Rank } from './Pages';
+import { Detail, Developer, Introduce, RealTime, Random, WorldCup, Rank, Chart } from './Pages';
 const Index = () => {
     return (
         <div className="container">
@@ -21,6 +21,9 @@ const Index = () => {
                 </Route>
                 <Route path="/developer">
                     <Developer />
+                </Route>
+                <Route path="/chart">
+                    <Chart />
                 </Route>
                 <Route exact path="/">
                     <Introduce />

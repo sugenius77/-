@@ -5,7 +5,7 @@ const Div = styled.div`
     font-size: 32px;
     display: flex;
 
-    @media screen and (max-width: 1040px) {
+    @media screen and (max-width: 1090px) {
         padding-top: 2vh;
     }
 `;
@@ -25,7 +25,7 @@ const MainLogo = ({ innerWidth, toggleHandler, logoName }) => {
                 <strong>{logoName}</strong>
             </Logo>
 
-            {innerWidth <= 1040 && <MenuToggle toggleHandler={toggleHandler} />}
+            {innerWidth <= 1090 && <MenuToggle toggleHandler={toggleHandler} />}
         </Div>
     );
 };

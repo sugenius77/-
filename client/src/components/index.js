@@ -5,3 +5,4 @@ export { RealTime } from './RealTime';
 export { Random } from './Random';
 export { WorldCup } from './WorldCup';
 export { Rank } from './Rank';
+export { Chart } from './Chart';

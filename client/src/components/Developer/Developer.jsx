@@ -31,7 +31,7 @@ const Developer = () => {
                         [0, 1, { start: 0.0, end: 0.1 }, { start: 0.15, end: 0.2 }],
                         [0, 1, { start: 0.2, end: 0.3 }, { start: 0.25, end: 0.4 }],
                         [0, 1, { start: 0.4, end: 0.5 }, { start: 0.55, end: 0.6 }],
-                        [0, 1, { start: 0.6, end: 0.7 }, { start: 0.75, end: 0.9 }],
+                        [0, 1, { start: 0.6, end: 0.7 }, { start: 0.75, end: 0.8 }],
                         [0, 1, { start: 0.8, end: 0.9 }, { start: 0.85, end: 1 }],
                     ],
                     translateY: [
@@ -39,13 +39,13 @@ const Developer = () => {
                         [0, 20, { start: 0.2, end: 0.3 }, { start: 0.35, end: 0.4 }],
                         [0, 20, { start: 0.4, end: 0.5 }, { start: 0.55, end: 0.6 }],
                         [0, 20, { start: 0.6, end: 0.7 }, { start: 0.75, end: 0.8 }],
-                        [0, 1, { start: 0.8, end: 0.9 }, { start: 0.95, end: 1 }],
+                        [0, 20, { start: 0.8, end: 0.9 }, { start: 0.95, end: 1 }],
                     ],
                 },
             },
             {
-                scrollHeight: heightNum * window.innerHeight,
-                heightNum: heightNum,
+                scrollHeight: window.innerHeight,
+                heightNum: 1,
                 values: {
                     opacity: [
                         [0, 1, { start: 0.0, end: 0.1 }, { start: 0.15, end: 0.2 }],
@@ -59,54 +59,6 @@ const Developer = () => {
                         [0, 20, { start: 0.3, end: 0.4 }, { start: 0.45, end: 0.5 }],
                         [0, 20, { start: 0.5, end: 0.6 }, { start: 0.65, end: 0.7 }],
                         [0, 20, { start: 0.7, end: 0.8 }, { start: 0.85, end: 0.9 }],
-                    ],
-                },
-            },
-            {
-                scrollHeight: heightNum * window.innerHeight,
-                heightNum: heightNum,
-                values: {
-                    opacity: [
-                        [0, 1, { start: 0.1, end: 0.2 }, { start: 0.25, end: 0.3 }],
-                        [0, 1, { start: 0.3, end: 0.4 }, { start: 0.35, end: 0.5 }],
-                        [0, 1, { start: 0.5, end: 0.6 }, { start: 0.65, end: 0.7 }],
-                        [0, 1, { start: 0.7, end: 0.8 }, { start: 0.85, end: 0.9 }],
-                    ],
-                    translateY: [
-                        [0, 20, { start: 0.1, end: 0.2 }, { start: 0.25, end: 0.3 }],
-                        [0, 20, { start: 0.3, end: 0.4 }, { start: 0.45, end: 0.5 }],
-                        [0, 20, { start: 0.5, end: 0.6 }, { start: 0.65, end: 0.7 }],
-                        [0, 20, { start: 0.7, end: 0.8 }, { start: 0.85, end: 0.9 }],
-                    ],
-                },
-            },
-            {
-                scrollHeight: heightNum * window.innerHeight,
-                heightNum: heightNum,
-                values: {
-                    opacity: [
-                        [0, 1, { start: 0.1, end: 0.2 }, { start: 0.25, end: 0.3 }],
-                        [0, 1, { start: 0.3, end: 0.4 }, { start: 0.35, end: 0.5 }],
-                        [0, 1, { start: 0.5, end: 0.6 }, { start: 0.65, end: 0.7 }],
-                        [0, 1, { start: 0.7, end: 0.8 }, { start: 0.85, end: 0.9 }],
-                    ],
-                    translateY: [
-                        [0, 20, { start: 0.1, end: 0.2 }, { start: 0.25, end: 0.3 }],
-                        [0, 20, { start: 0.3, end: 0.4 }, { start: 0.45, end: 0.5 }],
-                        [0, 20, { start: 0.5, end: 0.6 }, { start: 0.65, end: 0.7 }],
-                        [0, 20, { start: 0.7, end: 0.8 }, { start: 0.85, end: 0.9 }],
-                    ],
-                },
-            },
-            {
-                scrollHeight: heightNum * window.innerHeight,
-                heightNum: 1,
-                values: {
-                    opacity: [
-                        [0, 1, { start: 0.2, end: 0.25 }],
-                        [0, 1, { start: 0.3, end: 0.5 }],
-                        [0, 1, { start: 0.6, end: 0.8 }],
-                        [0, 1, { start: 0.85, end: 0.95 }],
                     ],
                 },
             },

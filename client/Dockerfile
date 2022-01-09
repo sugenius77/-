@@ -1,4 +1,4 @@
-FROM node:16 as build-stage
+FROM node:16-alpine as build-stage
 
 # 작업 디렉토리
 WORKDIR /react-app

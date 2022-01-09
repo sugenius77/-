@@ -5,9 +5,26 @@ const H2 = styled.h2`
     color: ${(props) => props.color};
     display: inline;
 `;
+const Box1 = styled.div`
+    position:absolute;
+    top:60%;
+    left: 50%;
+    z-index:-10;
+    transform: translate(-50%, -50%);
+    width:1000px;
+    overflow:auto;
+    @media screen and (max-width: 1040px) {
+        position:absolute;
+        top:50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index:-10;
+        width:412px;
+    }
+`;
 const Container = styled.div`
     paddingTop:'200px',
-    margin:'0 auto'
+    margin:'0 auto',
     width: 300px;
     overflow: hidden; 
 `;
@@ -69,7 +86,7 @@ function RandomView({ slide_, TOTAL_SLIDES, setChoice, animation }) {
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '140px' }}>
-            <div style={{ width: '1000px' }}>
+            <Box1 >
                 <Container>
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <H2 color={'#fec478'}>Random</H2>&nbsp;&nbsp;&nbsp;<H2>선택</H2>
@@ -79,7 +96,8 @@ function RandomView({ slide_, TOTAL_SLIDES, setChoice, animation }) {
                             display: 'flex',
                             maxWidth: '1000px',
                             justifyContent: 'center',
-                            border: '50px solid #a4d9f5',
+                            overflow:'auto',
+                            border: '15px solid #a4d9f5',
                             borderRadius: '5px',
                         }}
                     >
@@ -92,7 +110,7 @@ function RandomView({ slide_, TOTAL_SLIDES, setChoice, animation }) {
                         {/* <Button onClick={(e)=>{setStop(false); setCurrentSlide(currentSlide+1);}}>멈추지마!</Button> */}
                     </div>
                 </Container>
-            </div>
+            </Box1>
         </div>
     );
 }

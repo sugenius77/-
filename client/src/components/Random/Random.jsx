@@ -68,18 +68,19 @@ function Random() {
 
             {choice === -1 && <RandomView animation={animation} slide_={slide_} TOTAL_SLIDES={TOTAL_SLIDES} setChoice={setChoice} />}
             {choice !== -1 && (
-                <div style={{ marginTop: '200px' }}>
+                <div style={{ marginTop: '280px' }}>
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <div
                             style={{
                                 display: 'flex',
                                 maxWidth: '450px',
                                 justifyContent: 'center',
-                                border: '30px solid #a4d9f5',
+                                border: '15px solid #a4d9f5',
                                 borderRadius: '5px',
                             }}
                         >
-                            <Slide ref={imageRef} img={`${urlErrorCheck(data[choice][2])}`} />
+                            {<img src={`${urlErrorCheck(data[choice][2])}`} width={"330px"} height={"330px"}></img>}
+                            {/* <Slide size={30} ref={imageRef} img={`${urlErrorCheck(data[choice][2])}`} /> */}
                         </div>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'center', marginTop: '50px' }}>

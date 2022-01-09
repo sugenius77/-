@@ -6,7 +6,7 @@ const Div = styled.div`
     right: 1em;
     font-size: 24px;
     font-size: 32px;
-    @media screen and (max-width: 1040px) {
+    @media screen and (max-width: 1090px) {
         display: block;
     }
 `;

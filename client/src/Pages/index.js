@@ -5,3 +5,4 @@ export { default as RealTime } from './RealTime';
 export { default as Rank } from './Rank';
 export { default as Random } from './Random';
 export { default as WorldCup } from './WorldCup';
+export { default as Chart } from './Chart';
