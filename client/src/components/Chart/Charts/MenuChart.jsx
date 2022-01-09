@@ -21,6 +21,9 @@ const ButtonDiv = styled.div`
     .active {
         background-color: #4a4f5a;
     }
+    @media screen and (max-width: 640px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
 `;
 const Button = styled.button`
     color: ${(props) => props.color};
@@ -30,6 +33,11 @@ const Button = styled.button`
     font-size: 2vw;
     margin: 1vh 1vw;
     height: 2em;
+
+    @media screen and (max-width: 640px) {
+        width: 4em;
+        font-size: 4vw;
+    }
 `;
 
 const Title = styled.div`
@@ -57,6 +65,11 @@ const WeatherButton = styled.button`
     display: ${(props) => props.display};
     background-color: ${(props) => props.weatherColor};
     color: white;
+
+    @media screen and (max-width: 640px) {
+        width: 4em;
+        font-size: 4vw;
+    }
 `;
 
 const MenuChart = ({ windowSize }) => {

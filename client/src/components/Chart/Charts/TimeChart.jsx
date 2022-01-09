@@ -22,6 +22,9 @@ const ButtonDiv = styled.div`
     .active {
         background-color: #4a4f5a;
     }
+    @media screen and (max-width: 640px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
 `;
 const Button = styled.button`
     color: ${(props) => props.color};
@@ -31,6 +34,10 @@ const Button = styled.button`
     font-size: 2vw;
     margin: 1vh 1vw;
     height: 2em;
+    @media screen and (max-width: 640px) {
+        width: 4em;
+        font-size: 4vw;
+    }
 `;
 
 const TimeChart = ({ windowSize }) => {
@@ -70,7 +77,7 @@ const TimeChart = ({ windowSize }) => {
                 <XAxis dataKey="name" />
                 <YAxis yAxisId="left" label={{ value: '건', offset: 10, angle: 0, position: 'top' }} />
                 <Tooltip />
-                <Legend wrapperStyle={{ bottom: 0, left: 25 }} />
+                {windowSize.width > 640 && <Legend wrapperStyle={{ bottom: 0, left: 25 }} />}
                 {Lines.map((key, idx) => (
                     <Line
                         key={key + idx}
