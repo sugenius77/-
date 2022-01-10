@@ -56,4 +56,6 @@
 ## 6. 버전
   - 3.7
 
+## 7. 실행 서버 주소
+[배달구구](elice-kdt-3rd-team-09.koreacentral.cloudapp.azure.com)
 
