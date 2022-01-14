@@ -2,7 +2,7 @@ import axios from 'axios';
 class RealTime {
     async getRealTime(nx, ny) {
         try {
-            return await axios.get('http://localhost:5000/food/recommendation', {
+            return await axios.get('http://elice-kdt-3rd-team-09.koreacentral.cloudapp.azure.com/food/recommendation', {
                 params: {
                     nx: nx,
                     ny: ny,

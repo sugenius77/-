@@ -184,7 +184,7 @@ const WorldCup = () => {
     useEffect(async () => {
         if (modalRound !== -1) {
             try {
-                await axios.get(`http://localhost:5000/worldcup/start_rank?round=${modalRound}`).then((res) => {
+                await axios.get(`http://elice-kdt-3rd-team-09.koreacentral.cloudapp.azure.com/worldcup/start_rank?round=${modalRound}`).then((res) => {
                     setworldcupData(
                         ...worldcupData,
                         Object.keys(res.data).map((el) => ({ [el]: res.data[el] })),

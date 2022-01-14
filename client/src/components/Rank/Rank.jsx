@@ -22,7 +22,7 @@ function Rank() {
     const [rankData, setRankData] = useState([]);
     useEffect(async () => {
         try {
-            await axios.get(`http://localhost:5000/worldcup/rank`).then((test) => {
+            await axios.get(`http://elice-kdt-3rd-team-09.koreacentral.cloudapp.azure.com/worldcup/rank`).then((test) => {
                 // console.log(test.data, 'test');
                 [test].map((res) => setData(...data, res.data));
             });
