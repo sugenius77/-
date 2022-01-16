@@ -85,6 +85,7 @@ function WorldCupView({ worldcupWin, winRank }) {
                         <br />
                         <Text>현재</Text>
                         <Text color={'#fec478'}>{winRank}</Text>
+                        <Text color={'#fec478'}>{worldcupWin[2]}</Text>
                         <Text>등 입니다</Text>
                     </Box3>
                     <Box3>
