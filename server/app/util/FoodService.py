@@ -11,6 +11,7 @@ import requests
 import random
 import time  # time 모듈 임포트
 from datetime import date, datetime, timedelta
+from pytz import timezone
 
 class FoodService:
     def request_weather_openAPI(self,nx,ny):
@@ -176,7 +177,10 @@ class FoodService:
 
     # 시간에 따른 추천 업종
     def time_recommendation(self):
-        timeslot = (str(time.localtime().tm_hour))   
+        hour = datetime.now(timezone('Asia/Seoul')).strftime("%H")
+        min = datetime.now(timezone('Asia/Seoul')).strftime("%M")
+
+        timeslot = (str(hour))   
         time_id = db.session\
                     .query(rabbitTime.id)\
                     .filter(rabbitTime.time_slot == timeslot)\
@@ -205,9 +209,9 @@ class FoodService:
                     .query(rabbitKinds.kinds_name)\
                     .filter(rabbitKinds.id == selected_id)\
                     .first()
-  
+
         time_result = {
-        "value": f"{time.localtime().tm_hour}시 {time.localtime().tm_min}분",
+        "value": f"{hour}시 {min}분",
         "image_url": time_image[0],
         "kinds_name": time_kindsName[0],
         "kinds_id": selected_id
