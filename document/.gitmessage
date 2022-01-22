@@ -1,9 +1,9 @@
-[docs] Functions1
+[feat] 커밋 메시지 템플릿 추가
 
 [Jira ID] url
-    - what :
-    - why :
-    - how :
+    - what : 커밋 메시지 템플릿 추가
+    - why : 커밋의 일관성을 위해서
+    - how : 
     - 본문 :
 # --- COMMIT END ---
 
