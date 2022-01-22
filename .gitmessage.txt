@@ -1,4 +1,4 @@
-[Feat] Functions1
+[docs] Functions1
 
 [Jira ID] url
     - what :
